@@ -6,4 +6,20 @@ class Product < ApplicationRecord
   validates :price_out, numericality: true
 
   belongs_to :supplier
+  has_one :warehouse
+
+  class << self
+    def active
+      self.all.where(active: true)
+    end
+    def inactive
+      self.all.where(active: false)
+    end
+    def params
+      temp=[]
+      self.all.each {|p| temp << p.id.to_s}
+      return temp
+    end
+  end
+
 end

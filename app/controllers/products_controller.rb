@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def new
     supplier_must_exists
     @product=Product.new
@@ -39,7 +39,11 @@ class ProductsController < ApplicationController
   end
 
   def index
-    @products=Product.all
+    @products=Product.active
+  end
+
+  def inactive
+    @products=Product.inactive
   end
 
   def destroy

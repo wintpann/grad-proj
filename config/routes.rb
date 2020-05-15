@@ -13,5 +13,9 @@ Rails.application.routes.draw do
   get 'insuppliers' => 'suppliers#inactive'
 
   resources :products
+  get 'inproducts' => 'products#inactive'
+
+  get 'arrival' => 'actions#new_arrival'
+  post 'arrival' => 'actions#create_arrival'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
