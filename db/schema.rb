@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_14_155437) do
+ActiveRecord::Schema.define(version: 2020_05_15_084234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "suppliers", force: :cascade do |t|
+    t.string "name"
+    t.string "phone"
+    t.string "address"
+    t.boolean "active", default: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "identifier"
@@ -23,7 +32,7 @@ ActiveRecord::Schema.define(version: 2020_05_14_155437) do
     t.string "remember_digest"
     t.string "role", default: "none"
     t.boolean "active", default: true
-    t.datetime "last_seen", default: "2020-05-14 17:37:31"
+    t.datetime "last_seen", default: "2020-05-15 08:58:37"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["identifier"], name: "index_users_on_identifier", unique: true

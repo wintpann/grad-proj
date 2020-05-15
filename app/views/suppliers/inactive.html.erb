@@ -1,0 +1,14 @@
+<h3>Inactive suppliers</h3>
+<% if @suppliers && @suppliers.any? %>
+  <ul>
+    <% @suppliers.each do |supplier| %>
+      <li>
+        <%= supplier.id %>
+        <%= supplier.name %>
+        <%= supplier.phone %>
+        <%= supplier.address %>
+        <%= supplier.active %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

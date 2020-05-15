@@ -1,0 +1,6 @@
+<%= content_tag :p, "id: #{@supplier.id}" %>
+<%= content_tag :p, "name: #{@supplier.name}" %>
+<%= content_tag :p, "phone: #{@supplier.phone}" %>
+<%= content_tag :p, "address: #{@supplier.address}" %>
+<%= content_tag :p, "active: #{@supplier.active}" %>
+<%= link_to 'Delete/restore', supplier_path(@supplier), method: :delete %>

@@ -41,10 +41,17 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    User.find(params[:id]).toggle!(:active)
+    flash[:success]="Done"
+    redirect_to root_path
+  end
+
+  def inactive
+    @users=User.inactive
   end
 
   def index
-    @users=User.all
+    @users=User.active
   end
 
   private
