@@ -1,0 +1,8 @@
+<h3>User list</h3>
+<% if @users && @users.any? %>
+  <ul>
+    <% @users.each do |user| %>
+      <li><%= user.id %></li>
+    <% end %>
+  </ul>
+<% end %>

@@ -1,0 +1,5 @@
+<% if !flash.empty? %>
+    <% flash.each do |key, message| %>
+      <%= content_tag :h3, message, class: key %>
+    <% end %>
+<% end %>
