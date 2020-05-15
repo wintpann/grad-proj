@@ -3,11 +3,7 @@
   <ul>
     <% @users.each do |user| %>
       <li>
-        <%= user.id %>
-        <%= user.identifier %>
-        <%= user.role %>
-        <%= user.active %>
-        <%= user.last_seen %>
+        <%= link_to user.identifier, user_path(user) %>
       </li>
     <% end %>
   </ul>

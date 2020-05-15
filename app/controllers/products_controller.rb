@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    supplier_must_exists
+    supplier_must_be_available
     @product=Product.new
   end
 
@@ -54,9 +54,9 @@ class ProductsController < ApplicationController
 
   private
 
-  def supplier_must_exists
-    if !Supplier.any?
-      flash[:danger]="At least one supplier must exist"
+  def supplier_must_be_available
+    if !Supplier.active.any?
+      flash[:danger]="At least one supplier must exist and be active"
       redirect_to root_path
     end
   end

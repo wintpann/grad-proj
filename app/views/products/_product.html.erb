@@ -17,7 +17,7 @@
 <div>
   <%= f.label :supplier, "Supplier" %>
   <%= f.select(:supplier) do %>
-    <% Supplier.all.each do |s| %>
+    <% Supplier.active.each do |s| %>
       <%= content_tag :option, "(#{s.id}) #{s.name}", value: s.id %>
     <% end %>
   <% end %>

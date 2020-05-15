@@ -3,11 +3,7 @@
   <ul>
     <% @suppliers.each do |supplier| %>
       <li>
-        <%= supplier.id %>
-        <%= supplier.name %>
-        <%= supplier.phone %>
-        <%= supplier.address %>
-        <%= supplier.active %>
+        <%= link_to supplier.name, supplier_path(supplier) %>
       </li>
     <% end %>
   </ul>

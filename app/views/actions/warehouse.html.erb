@@ -3,8 +3,8 @@
   <ul>
     <% @warehouses.each do |warehouse| %>
       <li>
-        <%= warehouse.product.code %>
         <%= warehouse.amount %>
+        <%= link_to warehouse.product.code, product_path(warehouse.product.id) %>
       </li>
     <% end %>
   </ul>

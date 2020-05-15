@@ -2,6 +2,23 @@
   <ul>
     <li><%= link_to 'Log out', logout_path, method: :delete %></li>
   </ul>
+  <ul>
+    <li><%= link_to 'users', users_path %> <%= link_to 'new', signup_path %></li>
+    <li><%= link_to 'suppliers', suppliers_path %> <%= link_to 'new', new_supplier_path %></li>
+    <li><%= link_to 'products', products_path %> <%= link_to 'new', new_product_path %></li>
+  </ul>
+  <ul>
+    <li><%= link_to 'inusers', inusers_path %></li>
+    <li><%= link_to 'insuppliers', insuppliers_path %></li>
+    <li><%= link_to 'inproducts', inproducts_path %></li>
+  </ul>
+  <ul>
+    <li><%= link_to 'warehouse', warehouse_path %></li>
+    <li><%= link_to 'arrival', arrival_path %></li>
+    <li><%= link_to 'realization', realization_path %></li>
+    <li><%= link_to 'refund', refund_path %></li>
+    <li><%= link_to 'wrire_off', write_off_path %></li>
+  </ul>
   <% else %>
   <ul>
     <li><%= link_to 'Login', login_path %></li>
