@@ -43,6 +43,10 @@ class ActionsController < ApplicationController
     redirect_to root_path
   end
 
+  def warehouse
+    @warehouses=Warehouse.all
+  end
+
   def product_params(type)
     params.require(type).permit(Product.params)
   end

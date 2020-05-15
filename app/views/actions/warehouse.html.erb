@@ -1,0 +1,11 @@
+<h3>Warehouse</h3>
+<% if @warehouses && @warehouses.any? %>
+  <ul>
+    <% @warehouses.each do |warehouse| %>
+      <li>
+        <%= warehouse.product.code %>
+        <%= warehouse.amount %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
