@@ -10,10 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_15_084234) do
+ActiveRecord::Schema.define(version: 2020_05_15_113217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "products", force: :cascade do |t|
+    t.string "code"
+    t.string "name"
+    t.string "unit"
+    t.string "description", default: ""
+    t.bigint "supplier_id"
+    t.decimal "price_in"
+    t.decimal "price_out"
+    t.boolean "active", default: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["code"], name: "index_products_on_code", unique: true
+    t.index ["supplier_id"], name: "index_products_on_supplier_id"
+  end
 
   create_table "suppliers", force: :cascade do |t|
     t.string "name"
@@ -32,7 +47,7 @@ ActiveRecord::Schema.define(version: 2020_05_15_084234) do
     t.string "remember_digest"
     t.string "role", default: "none"
     t.boolean "active", default: true
-    t.datetime "last_seen", default: "2020-05-15 08:58:37"
+    t.datetime "last_seen", default: "2020-05-15 12:11:20"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["identifier"], name: "index_users_on_identifier", unique: true

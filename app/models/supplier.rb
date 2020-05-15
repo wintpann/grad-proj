@@ -12,4 +12,6 @@ class Supplier < ApplicationRecord
     end
   end
 
+  has_many :products
+
 end

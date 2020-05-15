@@ -1,0 +1,13 @@
+<h3>Product list</h3>
+<% if @products && @products.any? %>
+  <ul>
+    <% @products.each do |product| %>
+      <li>
+        <%= product.id %>
+        <%= product.code %>
+        <%= product.name %>
+        <%= product.active %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

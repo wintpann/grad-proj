@@ -1,0 +1,8 @@
+<%= content_tag :p, "code: #{@product.code}" %>
+<%= content_tag :p, "name: #{@product.name}" %>
+<%= content_tag :p, "description: #{@product.description}" %>
+<%= content_tag :p, "supplier: #{@product.supplier.name}" %>
+<%= content_tag :p, "price_in: #{@product.price_in}" %>
+<%= content_tag :p, "price_out: #{@product.price_out}" %>
+<%= content_tag :p, "active: #{@product.active}" %>
+<%= link_to 'Delete/restore', product_path(@product), method: :delete %>

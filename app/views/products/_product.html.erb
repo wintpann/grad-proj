@@ -1,0 +1,33 @@
+<div>
+  <%= f.label :code %>
+  <%= f.text_field :code %>
+</div>
+<div>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+</div>
+<div>
+  <%= f.label :unit %>
+  <%= f.text_field :unit %>
+</div>
+<div>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+</div>
+<div>
+  <%= f.label :supplier, "Supplier" %>
+  <%= f.select(:supplier) do %>
+    <% Supplier.all.each do |s| %>
+      <%= content_tag :option, "(#{s.id}) #{s.name}", value: s.id %>
+    <% end %>
+  <% end %>
+</div>
+<div>
+  <%= f.label :price_in %>
+  <%= f.text_field :price_in %>
+</div>
+<div>
+  <%= f.label :price_out %>
+  <%= f.text_field :price_out %>
+</div>
+<%= f.submit %>
