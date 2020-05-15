@@ -33,4 +33,11 @@ module SessionsHelper
     end
   end
 
+  def authenticate_user!
+    if !logged_in?
+      flash[:danger]='Authentication required'
+      redirect_to root_path
+    end
+  end
+
 end
