@@ -17,5 +17,8 @@ Rails.application.routes.draw do
 
   get 'arrival' => 'actions#new_arrival'
   post 'arrival' => 'actions#create_arrival'
+
+  get 'realization' => 'actions#new_realization'
+  post 'realization' => 'actions#create_realization'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
