@@ -24,6 +24,9 @@ Rails.application.routes.draw do
   get 'write_off' => 'actions#new_write_off'
   post 'write_off' => 'actions#create_write_off'
 
+  get 'refund' => 'actions#new_refund'
+  post 'refund' => 'actions#create_refund'
+
   get 'warehouse' => 'actions#warehouse'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

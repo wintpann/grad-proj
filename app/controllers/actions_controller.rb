@@ -82,6 +82,34 @@ class ActionsController < ApplicationController
     redirect_to root_path
   end
 
+  def new_refund
+    @warehouses=Warehouse.all
+
+    if @warehouses.empty?
+      flash[:danger]="Nothing to refund"
+      redirect_to root_path
+    end
+  end
+
+  def create_refund
+    if empty_products?(product_params(:refund))
+      flash.now[:danger]="Empty refund"
+      @warehouses=Warehouse.all
+      render 'new_refund'
+      return
+    end
+
+    if Warehouse.more_than_is?(product_params(:refund))
+      flash.now[:danger]="Can not refund more than have"
+      @warehouses=Warehouse.all
+      render 'new_refund'
+      return
+    end
+
+    Warehouse.remove_products(product_params(:refund))
+    redirect_to root_path
+  end
+
   def product_params(type)
     params.require(type).permit(Product.params)
   end
