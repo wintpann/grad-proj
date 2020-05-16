@@ -1,6 +1,10 @@
 class SuppliersController < ApplicationController
+  include SuppliersHelper
+
   before_action :authenticate_user!
   before_action :track_user!
+  before_action :active_supplier!, only: [:edit, :update]
+  before_action :constrain_destroy!, only: :destroy
 
   def new
     @supplier=Supplier.new

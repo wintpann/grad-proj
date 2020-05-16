@@ -1,6 +1,10 @@
 class ProductsController < ApplicationController
+  include ProductsHelper
+
   before_action :authenticate_user!
   before_action :track_user!
+  before_action :active_product!, only: [:edit, :update]
+  before_action :constrain_restore!, only: :destroy
 
   def new
     supplier_must_be_available
@@ -20,6 +24,7 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    supplier_must_be_available
     @product=Product.find(params[:id])
   end
 

@@ -20,6 +20,11 @@ class Product < ApplicationRecord
       self.all.each {|p| temp << p.id.to_s}
       return temp
     end
+    def codes
+      temp=[]
+      self.all.each {|p| temp << p.code}
+      return temp
+    end
   end
 
 end
