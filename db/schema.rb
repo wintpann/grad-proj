@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_16_164330) do
+ActiveRecord::Schema.define(version: 2020_05_16_183818) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,63 @@ ActiveRecord::Schema.define(version: 2020_05_16_164330) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["code"], name: "index_products_on_code", unique: true
     t.index ["supplier_id"], name: "index_products_on_supplier_id"
+  end
+
+  create_table "supplier_change_events", force: :cascade do |t|
+    t.bigint "head_event_id", null: false
+    t.string "event_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["head_event_id"], name: "index_supplier_change_events_on_head_event_id"
+  end
+
+  create_table "supplier_create_events", force: :cascade do |t|
+    t.bigint "supplier_change_event_id", null: false
+    t.bigint "supplier_snap_id", null: false
+    t.bigint "editor_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["supplier_change_event_id"], name: "index_supplier_create_events_on_supplier_change_event_id"
+    t.index ["supplier_snap_id"], name: "index_supplier_create_events_on_supplier_snap_id"
+  end
+
+  create_table "supplier_delete_events", force: :cascade do |t|
+    t.bigint "supplier_change_event_id", null: false
+    t.bigint "supplier_snap_id", null: false
+    t.bigint "editor_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["supplier_change_event_id"], name: "index_supplier_delete_events_on_supplier_change_event_id"
+    t.index ["supplier_snap_id"], name: "index_supplier_delete_events_on_supplier_snap_id"
+  end
+
+  create_table "supplier_edit_events", force: :cascade do |t|
+    t.bigint "supplier_change_event_id", null: false
+    t.bigint "from_snap_id"
+    t.bigint "to_snap_id"
+    t.bigint "editor_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["supplier_change_event_id"], name: "index_supplier_edit_events_on_supplier_change_event_id"
+  end
+
+  create_table "supplier_restore_events", force: :cascade do |t|
+    t.bigint "supplier_change_event_id", null: false
+    t.bigint "supplier_snap_id", null: false
+    t.bigint "editor_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["supplier_change_event_id"], name: "index_supplier_restore_events_on_supplier_change_event_id"
+    t.index ["supplier_snap_id"], name: "index_supplier_restore_events_on_supplier_snap_id"
+  end
+
+  create_table "supplier_snaps", force: :cascade do |t|
+    t.bigint "supplier_id"
+    t.string "name"
+    t.string "phone"
+    t.string "address"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "suppliers", force: :cascade do |t|
@@ -111,7 +168,7 @@ ActiveRecord::Schema.define(version: 2020_05_16_164330) do
     t.string "remember_digest"
     t.string "role", default: "none"
     t.boolean "active", default: true
-    t.datetime "last_seen", default: "2020-05-16 17:21:35"
+    t.datetime "last_seen", default: "2020-05-16 18:45:15"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["identifier"], name: "index_users_on_identifier", unique: true
@@ -125,6 +182,14 @@ ActiveRecord::Schema.define(version: 2020_05_16_164330) do
     t.index ["product_id"], name: "index_warehouses_on_product_id"
   end
 
+  add_foreign_key "supplier_change_events", "head_events"
+  add_foreign_key "supplier_create_events", "supplier_change_events"
+  add_foreign_key "supplier_create_events", "supplier_snaps"
+  add_foreign_key "supplier_delete_events", "supplier_change_events"
+  add_foreign_key "supplier_delete_events", "supplier_snaps"
+  add_foreign_key "supplier_edit_events", "supplier_change_events"
+  add_foreign_key "supplier_restore_events", "supplier_change_events"
+  add_foreign_key "supplier_restore_events", "supplier_snaps"
   add_foreign_key "user_change_events", "head_events"
   add_foreign_key "user_create_events", "user_change_events"
   add_foreign_key "user_create_events", "user_snaps"
