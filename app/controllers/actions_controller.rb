@@ -1,6 +1,7 @@
 class ActionsController < ApplicationController
   include ActionsHelper
   before_action :authenticate_user!
+  before_action :track_user!
 
   def new_arrival
     if !Product.any?

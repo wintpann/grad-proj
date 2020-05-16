@@ -1,6 +1,7 @@
 class SuppliersController < ApplicationController
   before_action :authenticate_user!
-  
+  before_action :track_user!
+
   def new
     @supplier=Supplier.new
   end

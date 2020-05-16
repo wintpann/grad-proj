@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!
+  before_action :track_user!
 
   def new
     supplier_must_be_available
