@@ -1,0 +1,10 @@
+<h3>Inactive suppliers</h3>
+<% if @suppliers && @suppliers.any? %>
+  <ul>
+    <% @suppliers.each do |supplier| %>
+      <li>
+        <%= link_to supplier.name, supplier_path(supplier) %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

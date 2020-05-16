@@ -1,0 +1,10 @@
+<h3>Product list</h3>
+<% if @products && @products.any? %>
+  <ul>
+    <% @products.each do |product| %>
+      <li>
+        <%= link_to product.code, product_path(product) %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

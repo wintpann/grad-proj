@@ -24,6 +24,14 @@ class User < ApplicationRecord
     def digest(string)
       BCrypt::Password.create(string, cost: BCrypt::Engine.cost)
     end
+
+    def active
+      self.all.where(active: true)
+    end
+
+    def inactive
+      self.all.where(active: false)
+    end
   end
 
   def remember

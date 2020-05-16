@@ -1,0 +1,11 @@
+<h3>Realization</h3>
+<%= form_for 'realization', url: realization_path do |f| %>
+  <% @warehouses.each do |warehouse| %>
+    <div>
+      <%= f.label warehouse.product.code %>
+      <%= f.text_field warehouse.product.id, value: 0 %>
+      <%= content_tag :span, "#{warehouse.product.unit} of #{warehouse.amount}" %>
+    </div>
+  <% end %>
+  <%= f.submit "Done" %>
+<% end %>
