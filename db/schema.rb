@@ -168,7 +168,7 @@ ActiveRecord::Schema.define(version: 2020_05_16_183818) do
     t.string "remember_digest"
     t.string "role", default: "none"
     t.boolean "active", default: true
-    t.datetime "last_seen", default: "2020-05-16 18:45:15"
+    t.datetime "last_seen", default: "2020-05-16 19:37:55"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["identifier"], name: "index_users_on_identifier", unique: true
