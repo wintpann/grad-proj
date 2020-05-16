@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_15_125828) do
+ActiveRecord::Schema.define(version: 2020_05_16_164330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "head_events", force: :cascade do |t|
+    t.string "event_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "products", force: :cascade do |t|
     t.string "code"
@@ -39,6 +45,64 @@ ActiveRecord::Schema.define(version: 2020_05_15_125828) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "user_change_events", force: :cascade do |t|
+    t.bigint "head_event_id", null: false
+    t.string "event_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["head_event_id"], name: "index_user_change_events_on_head_event_id"
+  end
+
+  create_table "user_create_events", force: :cascade do |t|
+    t.bigint "user_change_event_id", null: false
+    t.bigint "user_snap_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_change_event_id"], name: "index_user_create_events_on_user_change_event_id"
+    t.index ["user_snap_id"], name: "index_user_create_events_on_user_snap_id"
+  end
+
+  create_table "user_delete_events", force: :cascade do |t|
+    t.bigint "user_change_event_id", null: false
+    t.bigint "user_snap_id", null: false
+    t.bigint "editor_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_change_event_id"], name: "index_user_delete_events_on_user_change_event_id"
+    t.index ["user_snap_id"], name: "index_user_delete_events_on_user_snap_id"
+  end
+
+  create_table "user_edit_events", force: :cascade do |t|
+    t.bigint "user_change_event_id", null: false
+    t.bigint "from_snap_id"
+    t.bigint "to_snap_id"
+    t.bigint "editor_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_change_event_id"], name: "index_user_edit_events_on_user_change_event_id"
+  end
+
+  create_table "user_restore_events", force: :cascade do |t|
+    t.bigint "user_change_event_id", null: false
+    t.bigint "user_snap_id", null: false
+    t.bigint "editor_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_change_event_id"], name: "index_user_restore_events_on_user_change_event_id"
+    t.index ["user_snap_id"], name: "index_user_restore_events_on_user_snap_id"
+  end
+
+  create_table "user_snaps", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "identifier"
+    t.string "name"
+    t.string "lastname"
+    t.string "role"
+    t.boolean "active"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "identifier"
     t.string "name"
@@ -47,7 +111,7 @@ ActiveRecord::Schema.define(version: 2020_05_15_125828) do
     t.string "remember_digest"
     t.string "role", default: "none"
     t.boolean "active", default: true
-    t.datetime "last_seen", default: "2020-05-15 12:11:20"
+    t.datetime "last_seen", default: "2020-05-16 17:21:35"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["identifier"], name: "index_users_on_identifier", unique: true
@@ -61,5 +125,13 @@ ActiveRecord::Schema.define(version: 2020_05_15_125828) do
     t.index ["product_id"], name: "index_warehouses_on_product_id"
   end
 
+  add_foreign_key "user_change_events", "head_events"
+  add_foreign_key "user_create_events", "user_change_events"
+  add_foreign_key "user_create_events", "user_snaps"
+  add_foreign_key "user_delete_events", "user_change_events"
+  add_foreign_key "user_delete_events", "user_snaps"
+  add_foreign_key "user_edit_events", "user_change_events"
+  add_foreign_key "user_restore_events", "user_change_events"
+  add_foreign_key "user_restore_events", "user_snaps"
   add_foreign_key "warehouses", "products"
 end
