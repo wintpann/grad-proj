@@ -10,13 +10,76 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_16_183818) do
+ActiveRecord::Schema.define(version: 2020_05_17_113033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "head_events", force: :cascade do |t|
     t.string "event_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "product_change_events", force: :cascade do |t|
+    t.bigint "head_event_id", null: false
+    t.string "type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["head_event_id"], name: "index_product_change_events_on_head_event_id"
+  end
+
+  create_table "product_create_events", force: :cascade do |t|
+    t.bigint "product_change_event_id", null: false
+    t.bigint "product_snap_id", null: false
+    t.bigint "editor_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_change_event_id"], name: "index_product_create_events_on_product_change_event_id"
+    t.index ["product_snap_id"], name: "index_product_create_events_on_product_snap_id"
+  end
+
+  create_table "product_delete_events", force: :cascade do |t|
+    t.bigint "product_change_event_id", null: false
+    t.bigint "product_snap_id", null: false
+    t.bigint "editor_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_change_event_id"], name: "index_product_delete_events_on_product_change_event_id"
+    t.index ["product_snap_id"], name: "index_product_delete_events_on_product_snap_id"
+  end
+
+  create_table "product_edit_events", force: :cascade do |t|
+    t.bigint "product_change_event_id", null: false
+    t.bigint "from_snap_id"
+    t.bigint "to_snap_id"
+    t.bigint "editor_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_change_event_id"], name: "index_product_edit_events_on_product_change_event_id"
+  end
+
+  create_table "product_restore_events", force: :cascade do |t|
+    t.bigint "product_change_event_id", null: false
+    t.bigint "product_snap_id", null: false
+    t.bigint "editor_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_change_event_id"], name: "index_product_restore_events_on_product_change_event_id"
+    t.index ["product_snap_id"], name: "index_product_restore_events_on_product_snap_id"
+  end
+
+  create_table "product_snaps", force: :cascade do |t|
+    t.bigint "product_id"
+    t.string "code"
+    t.string "name"
+    t.string "unit"
+    t.boolean "active"
+    t.string "description"
+    t.bigint "supplier_id"
+    t.string "supplier_name"
+    t.decimal "price_in"
+    t.decimal "price_out"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -168,7 +231,7 @@ ActiveRecord::Schema.define(version: 2020_05_16_183818) do
     t.string "remember_digest"
     t.string "role", default: "none"
     t.boolean "active", default: true
-    t.datetime "last_seen", default: "2020-05-16 19:37:55"
+    t.datetime "last_seen", default: "2020-05-17 11:43:57"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["identifier"], name: "index_users_on_identifier", unique: true
@@ -182,6 +245,14 @@ ActiveRecord::Schema.define(version: 2020_05_16_183818) do
     t.index ["product_id"], name: "index_warehouses_on_product_id"
   end
 
+  add_foreign_key "product_change_events", "head_events"
+  add_foreign_key "product_create_events", "product_change_events"
+  add_foreign_key "product_create_events", "product_snaps"
+  add_foreign_key "product_delete_events", "product_change_events"
+  add_foreign_key "product_delete_events", "product_snaps"
+  add_foreign_key "product_edit_events", "product_change_events"
+  add_foreign_key "product_restore_events", "product_change_events"
+  add_foreign_key "product_restore_events", "product_snaps"
   add_foreign_key "supplier_change_events", "head_events"
   add_foreign_key "supplier_create_events", "supplier_change_events"
   add_foreign_key "supplier_create_events", "supplier_snaps"
