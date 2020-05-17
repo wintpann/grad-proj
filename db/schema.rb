@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_17_113033) do
+ActiveRecord::Schema.define(version: 2020_05_17_165320) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "arrival_events", force: :cascade do |t|
+    t.bigint "production_event_id", null: false
+    t.bigint "product_id", null: false
+    t.bigint "product_snap_id", null: false
+    t.float "amount"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_arrival_events_on_product_id"
+    t.index ["product_snap_id"], name: "index_arrival_events_on_product_snap_id"
+    t.index ["production_event_id"], name: "index_arrival_events_on_production_event_id"
+  end
 
   create_table "head_events", force: :cascade do |t|
     t.string "event_type"
@@ -84,6 +96,16 @@ ActiveRecord::Schema.define(version: 2020_05_17_113033) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "production_events", force: :cascade do |t|
+    t.bigint "head_event_id", null: false
+    t.decimal "sum", default: "0.0"
+    t.string "event_type"
+    t.bigint "editor_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["head_event_id"], name: "index_production_events_on_head_event_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "code"
     t.string "name"
@@ -97,6 +119,30 @@ ActiveRecord::Schema.define(version: 2020_05_17_113033) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["code"], name: "index_products_on_code", unique: true
     t.index ["supplier_id"], name: "index_products_on_supplier_id"
+  end
+
+  create_table "realization_events", force: :cascade do |t|
+    t.bigint "production_event_id", null: false
+    t.bigint "product_id", null: false
+    t.bigint "product_snap_id", null: false
+    t.float "amount"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_realization_events_on_product_id"
+    t.index ["product_snap_id"], name: "index_realization_events_on_product_snap_id"
+    t.index ["production_event_id"], name: "index_realization_events_on_production_event_id"
+  end
+
+  create_table "refund_events", force: :cascade do |t|
+    t.bigint "production_event_id", null: false
+    t.bigint "product_id", null: false
+    t.bigint "product_snap_id", null: false
+    t.float "amount"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_refund_events_on_product_id"
+    t.index ["product_snap_id"], name: "index_refund_events_on_product_snap_id"
+    t.index ["production_event_id"], name: "index_refund_events_on_production_event_id"
   end
 
   create_table "supplier_change_events", force: :cascade do |t|
@@ -231,7 +277,7 @@ ActiveRecord::Schema.define(version: 2020_05_17_113033) do
     t.string "remember_digest"
     t.string "role", default: "none"
     t.boolean "active", default: true
-    t.datetime "last_seen", default: "2020-05-17 11:57:36"
+    t.datetime "last_seen", default: "2020-05-17 17:21:44"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["identifier"], name: "index_users_on_identifier", unique: true
@@ -245,6 +291,21 @@ ActiveRecord::Schema.define(version: 2020_05_17_113033) do
     t.index ["product_id"], name: "index_warehouses_on_product_id"
   end
 
+  create_table "write_off_events", force: :cascade do |t|
+    t.bigint "production_event_id", null: false
+    t.bigint "product_id", null: false
+    t.bigint "product_snap_id", null: false
+    t.float "amount"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_write_off_events_on_product_id"
+    t.index ["product_snap_id"], name: "index_write_off_events_on_product_snap_id"
+    t.index ["production_event_id"], name: "index_write_off_events_on_production_event_id"
+  end
+
+  add_foreign_key "arrival_events", "product_snaps"
+  add_foreign_key "arrival_events", "production_events"
+  add_foreign_key "arrival_events", "products"
   add_foreign_key "product_change_events", "head_events"
   add_foreign_key "product_create_events", "product_change_events"
   add_foreign_key "product_create_events", "product_snaps"
@@ -253,6 +314,13 @@ ActiveRecord::Schema.define(version: 2020_05_17_113033) do
   add_foreign_key "product_edit_events", "product_change_events"
   add_foreign_key "product_restore_events", "product_change_events"
   add_foreign_key "product_restore_events", "product_snaps"
+  add_foreign_key "production_events", "head_events"
+  add_foreign_key "realization_events", "product_snaps"
+  add_foreign_key "realization_events", "production_events"
+  add_foreign_key "realization_events", "products"
+  add_foreign_key "refund_events", "product_snaps"
+  add_foreign_key "refund_events", "production_events"
+  add_foreign_key "refund_events", "products"
   add_foreign_key "supplier_change_events", "head_events"
   add_foreign_key "supplier_create_events", "supplier_change_events"
   add_foreign_key "supplier_create_events", "supplier_snaps"
@@ -270,4 +338,7 @@ ActiveRecord::Schema.define(version: 2020_05_17_113033) do
   add_foreign_key "user_restore_events", "user_change_events"
   add_foreign_key "user_restore_events", "user_snaps"
   add_foreign_key "warehouses", "products"
+  add_foreign_key "write_off_events", "product_snaps"
+  add_foreign_key "write_off_events", "production_events"
+  add_foreign_key "write_off_events", "products"
 end

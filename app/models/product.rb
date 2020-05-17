@@ -7,6 +7,10 @@ class Product < ApplicationRecord
 
   belongs_to :supplier
   has_one :warehouse
+  has_one :arrival_event
+  has_one :realization_event
+  has_one :write_off_event
+  has_one :refund_event
 
   class << self
     def active

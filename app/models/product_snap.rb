@@ -2,6 +2,10 @@ class ProductSnap < ApplicationRecord
   has_one :product_create_event
   has_one :product_delete_event
   has_one :product_restore_event
+  has_one :arrival_event
+  has_one :realization_event
+  has_one :write_off_event
+  has_one :refund_event
 
   class << self
     def create_snap(product)
