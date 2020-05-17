@@ -19,7 +19,7 @@ class ActionsController < ApplicationController
       return
     end
 
-    Warehouse.add_products(product_params(:arrival))
+    save_arrival(params: product_params(:arrival), editor: current_user)
     redirect_to root_path
   end
 
@@ -47,7 +47,7 @@ class ActionsController < ApplicationController
       return
     end
 
-    Warehouse.remove_products(product_params(:realization))
+    save_realizatioin(params: product_params(:realization), editor: current_user)
     redirect_to root_path
   end
 
@@ -79,7 +79,7 @@ class ActionsController < ApplicationController
       return
     end
 
-    Warehouse.remove_products(product_params(:write_off))
+    save_write_off(params: product_params(:write_off), editor: current_user)
     redirect_to root_path
   end
 
@@ -107,7 +107,7 @@ class ActionsController < ApplicationController
       return
     end
 
-    Warehouse.remove_products(product_params(:refund))
+    save_refund(params: product_params(:refund), editor: current_user)
     redirect_to root_path
   end
 

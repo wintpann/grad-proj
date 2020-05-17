@@ -5,7 +5,7 @@ class Warehouse < ApplicationRecord
     def add_products(products)
       products.each do |product|
         id=product[0].to_i
-        amount=product[1].to_i
+        amount=product[1].to_d
         if amount!=0
           if self.new_product?(id)
             Warehouse.create(product_id: id, amount: amount)
@@ -20,7 +20,7 @@ class Warehouse < ApplicationRecord
     def remove_products(products)
       products.each do |product|
         id=product[0].to_i
-        amount=product[1].to_i
+        amount=product[1].to_d
         warehouse=Warehouse.find_by(product_id: id)
         warehouse.update_attribute(:amount, warehouse.amount-amount)
         warehouse.destroy if warehouse.amount<=0
@@ -30,7 +30,7 @@ class Warehouse < ApplicationRecord
     def more_than_is?(products)
       products.each do |product|
         id=product[0].to_i
-        amount=product[1].to_i
+        amount=product[1].to_d
         return true if amount>self.find_by(product_id: id).amount
       end
       return false

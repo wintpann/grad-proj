@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2020_05_17_165320) do
     t.bigint "product_id", null: false
     t.bigint "product_snap_id", null: false
     t.float "amount"
+    t.decimal "sum", default: "0.0"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["product_id"], name: "index_arrival_events_on_product_id"
@@ -126,6 +127,7 @@ ActiveRecord::Schema.define(version: 2020_05_17_165320) do
     t.bigint "product_id", null: false
     t.bigint "product_snap_id", null: false
     t.float "amount"
+    t.decimal "sum", default: "0.0"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["product_id"], name: "index_realization_events_on_product_id"
@@ -138,6 +140,7 @@ ActiveRecord::Schema.define(version: 2020_05_17_165320) do
     t.bigint "product_id", null: false
     t.bigint "product_snap_id", null: false
     t.float "amount"
+    t.decimal "sum", default: "0.0"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["product_id"], name: "index_refund_events_on_product_id"
@@ -277,7 +280,7 @@ ActiveRecord::Schema.define(version: 2020_05_17_165320) do
     t.string "remember_digest"
     t.string "role", default: "none"
     t.boolean "active", default: true
-    t.datetime "last_seen", default: "2020-05-17 17:21:44"
+    t.datetime "last_seen", default: "2020-05-17 17:56:40"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["identifier"], name: "index_users_on_identifier", unique: true
@@ -296,6 +299,7 @@ ActiveRecord::Schema.define(version: 2020_05_17_165320) do
     t.bigint "product_id", null: false
     t.bigint "product_snap_id", null: false
     t.float "amount"
+    t.decimal "sum", default: "0.0"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["product_id"], name: "index_write_off_events_on_product_id"
