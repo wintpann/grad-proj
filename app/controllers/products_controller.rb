@@ -15,6 +15,7 @@ class ProductsController < ApplicationController
     @product=Product.new(product_params)
     @product.supplier_id=params[:product][:supplier]
     if @product.save
+      save_create_product_event(product: @product, editor: current_user)
       flash[:success]="Product created"
       redirect_to root_path
     else
@@ -31,7 +32,10 @@ class ProductsController < ApplicationController
   def update
     @product=Product.find(params[:id])
     @product.supplier_id=params[:product][:supplier]
+
+    @old=Product.find(params[:id])
     if @product.update(product_params)
+      save_product_edit_event(snap_from: @old, snap_to: @product, editor: current_user)
       flash[:success]="Product updated"
       redirect_to root_path
     else
@@ -53,8 +57,18 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    Product.find(params[:id]).toggle!(:active)
-    flash[:success]="Done"
+    product=Product.find(params[:id])
+
+    if product.active?
+      flash[:success]="Product deleted"
+      save_product_delete_event(product: product, editor: current_user)
+    else
+      flash[:success]="Product restored"
+      save_product_restore_event(product: product, editor: current_user)
+    end
+
+    product.toggle!(:active)
+
     redirect_to root_path
   end
 

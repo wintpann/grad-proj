@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2020_05_17_113033) do
 
   create_table "product_change_events", force: :cascade do |t|
     t.bigint "head_event_id", null: false
-    t.string "type"
+    t.string "event_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["head_event_id"], name: "index_product_change_events_on_head_event_id"
@@ -231,7 +231,7 @@ ActiveRecord::Schema.define(version: 2020_05_17_113033) do
     t.string "remember_digest"
     t.string "role", default: "none"
     t.boolean "active", default: true
-    t.datetime "last_seen", default: "2020-05-17 11:43:57"
+    t.datetime "last_seen", default: "2020-05-17 11:57:36"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["identifier"], name: "index_users_on_identifier", unique: true
