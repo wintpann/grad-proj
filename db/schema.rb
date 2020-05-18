@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_17_165320) do
+ActiveRecord::Schema.define(version: 2020_05_18_183934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -249,6 +249,13 @@ ActiveRecord::Schema.define(version: 2020_05_17_165320) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_change_event_id"], name: "index_user_edit_events_on_user_change_event_id"
+  end
+
+  create_table "user_invites", force: :cascade do |t|
+    t.string "invite"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["invite"], name: "index_user_invites_on_invite"
   end
 
   create_table "user_restore_events", force: :cascade do |t|

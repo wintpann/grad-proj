@@ -8,16 +8,22 @@ class UsersController < ApplicationController
   before_action :track_user!, except: [:new, :create]
 
   def new
-    @user=User.new
   end
 
   def create
     @user=User.new(user_params)
 
+    if !UserInvite.exists?(params[:invite_code])
+      flash.now[:danger]='Invite code is invalid'
+      render 'new'
+      return
+    end
+
     if @user.save
       log_in(@user)
       remember(@user)
       save_user_create_event(user: @user)
+      UserInvite.find_by(invite: params[:invite_code]).destroy
       flash[:success]="User created"
       redirect_to user_path(@user)
     else

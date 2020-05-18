@@ -30,5 +30,9 @@ Rails.application.routes.draw do
   get 'warehouse' => 'actions#warehouse'
 
   get 'events' => 'actions#events'
+
+  get 'invites' => 'actions#invites'
+  post 'invites' => 'actions#new_invite'
+  delete 'invites' => 'actions#destroy_invite'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

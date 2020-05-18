@@ -115,6 +115,19 @@ class ActionsController < ApplicationController
     @events=HeadEvent.order(created_at: :desc)
   end
 
+  def invites
+    @invites=UserInvite.all
+  end
+
+  def new_invite
+    @invite=UserInvite.create_invite
+  end
+
+  def destroy_invite
+    UserInvite.find(params[:id]).destroy
+    redirect_to invites_path
+  end
+
   private
 
   def product_params(type)
