@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  head_event: one
+  sum: 9.99
+  editor_id: 
+
+two:
+  head_event: two
+  sum: 9.99
+  editor_id: 

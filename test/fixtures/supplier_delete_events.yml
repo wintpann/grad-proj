@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  supplier_change_event: one
+  supplier_snap: one
+
+two:
+  supplier_change_event: two
+  supplier_snap: two

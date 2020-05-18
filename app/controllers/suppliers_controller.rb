@@ -14,6 +14,7 @@ class SuppliersController < ApplicationController
     @supplier=Supplier.new(supplier_params)
 
     if @supplier.save
+      save_supplier_create_event(supplier: @supplier, editor: current_user)
       flash[:success]='Supplier created'
       redirect_to supplier_path(@supplier)
     else
@@ -30,8 +31,10 @@ class SuppliersController < ApplicationController
   def update
 
     @supplier=Supplier.find(params[:id])
+    @old=Supplier.find(params[:id])
 
     if @supplier.update(supplier_params)
+      save_supplier_edit_event(snap_from: @old, snap_to: @supplier, editor: current_user)
       flash[:success]="Supplier updated"
       redirect_to supplier_path(@supplier)
     else
@@ -54,8 +57,18 @@ class SuppliersController < ApplicationController
   end
 
   def destroy
-    Supplier.find(params[:id]).toggle!(:active)
-    flash[:success]="Done"
+    supplier=Supplier.find(params[:id])
+
+    if supplier.active?
+      flash[:success]="Supplier deleted"
+      save_supplier_delete_event(supplier: supplier, editor: current_user)
+    else
+      flash[:success]="Supplier restored"
+      save_supplier_restore_event(supplier: supplier, editor: current_user)
+    end
+
+    supplier.toggle!(:active)
+
     redirect_to root_path
   end
 

@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_change_event: one
+  from_snap_id: 
+  to_snap_id: 
+  editor_id: 
+
+two:
+  user_change_event: two
+  from_snap_id: 
+  to_snap_id: 
+  editor_id: 

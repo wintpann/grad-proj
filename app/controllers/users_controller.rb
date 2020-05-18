@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   include UsersHelper
-  
+
   before_action :authenticate_user!, except: [:new, :create]
   #before_action :correct_user!, only: [:edit, :update, :destroy]
   before_action :active_user!, only: [:edit, :update]
@@ -16,6 +16,7 @@ class UsersController < ApplicationController
     if @user.save
       log_in(@user)
       remember(@user)
+      save_user_create_event(user: @user)
       flash[:success]="User created"
       redirect_to user_path(@user)
     else
@@ -36,8 +37,10 @@ class UsersController < ApplicationController
   def update
 
     @user=User.find(params[:id])
+    @old=User.find(params[:id])
 
     if @user.update(user_params)
+      save_user_edit_event(user_to: @user, user_from: @old, editor: current_user)
       flash[:success]="User updated"
       redirect_to user_path(@user)
     else
@@ -48,8 +51,18 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.find(params[:id]).toggle!(:active)
-    flash[:success]="Done"
+    user=User.find(params[:id])
+
+    if user.active?
+      flash[:success]="User deleted"
+      save_user_delete_event(user: user, editor: current_user)
+    else
+      flash[:success]="User restored"
+      save_user_restore_event(user: user, editor: current_user)
+    end
+
+    user.toggle!(:active)
+
     redirect_to root_path
   end
 

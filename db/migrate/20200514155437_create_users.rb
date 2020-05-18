@@ -8,7 +8,7 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string :remember_digest
       t.string :role, default: 'none'
       t.boolean :active, default: true
-      t.datetime :last_seen, default: Time.now
+      t.datetime :last_seen
 
       t.timestamps
     end
