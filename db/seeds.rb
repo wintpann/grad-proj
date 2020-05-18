@@ -13,8 +13,9 @@ lastname: 'Koff',
 password_digest: password,
 role: 'root')
 save_user_create_event(user: admin)
+from=User.last
 admin.update_attribute(:lastname, 'Kirari')
-save_user_edit_event(user_to: admin, user_from: admin, editor: admin)
+save_user_edit_event(user_to: admin, user_from: from, editor: admin)
 save_user_delete_event(user: admin, editor: admin)
 save_user_restore_event(user: admin, editor: admin)
 
@@ -32,8 +33,9 @@ co_colonel=Supplier.create!(name: 'CO Colonel',
 phone: '8-823-2652',
 address: '3 Shore Street Clarksburg, WV 26301')
 save_supplier_create_event(supplier: llc_freedom, editor: admin)
+from=Supplier.last
 co_colonel.update_attribute(:address, '65 3rd Ave. Livingston, NJ 07039')
-save_supplier_edit_event(snap_from: co_colonel, snap_to: co_colonel, editor: admin)
+save_supplier_edit_event(snap_from: from, snap_to: co_colonel, editor: admin)
 save_supplier_delete_event(supplier: co_colonel, editor: admin)
 save_supplier_restore_event(supplier: co_colonel, editor: admin)
 
@@ -72,8 +74,9 @@ supplier_id: ltd_sofa.id,
 price_in: 50.75,
 price_out: 80.1)
 save_create_product_event(product: shelf, editor: admin)
+from=Product.last
 shelf.update_attribute(:name, 'Edited shelf')
-save_product_edit_event(snap_from: shelf, snap_to: shelf, editor: admin)
+save_product_edit_event(snap_from: from, snap_to: shelf, editor: admin)
 save_product_delete_event(product: shelf, editor: admin)
 save_product_restore_event(product: shelf, editor: admin)
 
