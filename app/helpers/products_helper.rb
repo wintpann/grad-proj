@@ -17,6 +17,16 @@ module ProductsHelper
     end
   end
 
+  def constrain_delete!
+    product=Product.find(params[:id])
+    if product.active?
+      if !Warehouse.new_product?(product.id)
+        flash[:danger]="Denied. There is the product in warehouse"
+        redirect_to root_path
+      end
+    end
+  end
+
   def save_create_product_event(options={})
     head_event=HeadEvent.create(event_type: 'product_change')
     change_event=head_event.create_product_change_event(event_type: 'create')
