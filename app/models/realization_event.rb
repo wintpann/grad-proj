@@ -13,7 +13,7 @@ class RealizationEvent < ApplicationRecord
                                    product_id: product_id,
                                    product_snap_id: product_snap.id,
                                    amount: amount,
-                                   sum: product_snap.price_in*amount)
+                                   sum: product_snap.price_out*amount)
          arrival_event.production_event.update_sum(arrival_event.sum)
        end
      end

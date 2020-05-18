@@ -280,7 +280,7 @@ ActiveRecord::Schema.define(version: 2020_05_17_165320) do
     t.string "remember_digest"
     t.string "role", default: "none"
     t.boolean "active", default: true
-    t.datetime "last_seen", default: "2020-05-17 17:56:40"
+    t.datetime "last_seen"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["identifier"], name: "index_users_on_identifier", unique: true
@@ -288,7 +288,7 @@ ActiveRecord::Schema.define(version: 2020_05_17_165320) do
 
   create_table "warehouses", force: :cascade do |t|
     t.bigint "product_id", null: false
-    t.integer "amount"
+    t.decimal "amount"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["product_id"], name: "index_warehouses_on_product_id"

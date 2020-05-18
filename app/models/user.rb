@@ -7,6 +7,7 @@ class User < ApplicationRecord
     self.identifier.downcase!
     self.name.strip!
     self.lastname.strip!
+    self.last_seen=Time.now
   end
 
   has_secure_password
