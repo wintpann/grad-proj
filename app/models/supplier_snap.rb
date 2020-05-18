@@ -11,4 +11,8 @@ class SupplierSnap < ApplicationRecord
                   address: supplier.address)
     end
   end
+
+  def now
+    Supplier.find(self.supplier_id)
+  end
 end

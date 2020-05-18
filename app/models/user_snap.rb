@@ -13,4 +13,8 @@ class UserSnap < ApplicationRecord
                   active: user.active)
     end
   end
+
+  def now
+    User.find(self.user_id)
+  end
 end

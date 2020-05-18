@@ -5,3 +5,4 @@
 <%= content_tag :p, "role: #{@user.role}" %>
 <%= content_tag :p, "active: #{@user.active}" %>
 <%= link_to 'Delete/restore', user_path(@user), method: :delete %>
+<%= link_to 'Edit', edit_user_path(@user) %>

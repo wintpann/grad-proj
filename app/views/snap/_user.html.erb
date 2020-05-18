@@ -1,0 +1,26 @@
+<table>
+  <tr>
+    <td>Identifier</td>
+    <td><%=snap.identifier%></td>
+  </tr>
+  <tr>
+    <td>Name</td>
+    <td><%=snap.name%></td>
+  </tr>
+  <tr>
+    <td>Lastname</td>
+    <td><%=snap.lastname%></td>
+  </tr>
+  <tr>
+    <td>Rights</td>
+    <td><%=snap.role%></td>
+  </tr>
+  <tr>
+    <td>Active</td>
+    <td><%=snap.active%></td>
+  </tr>
+  <tr>
+    <td>Now</td>
+    <td><%= link_to 'User', user_path(snap.user_id)%></td>
+  </tr>
+</table>

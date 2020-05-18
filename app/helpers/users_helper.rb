@@ -33,14 +33,14 @@ module UsersHelper
     head_event=HeadEvent.create(event_type: 'user_change')
     change_event=head_event.create_user_change_event(event_type: 'delete')
     user_snap=UserSnap.create_snap(options[:user])
-    delete_event=change_event.create_user_delete_event(user_snap_id: user_snap.id, editor_id: current_user.id)
+    delete_event=change_event.create_user_delete_event(user_snap_id: user_snap.id, editor_id: options[:editor].id)
   end
 
   def save_user_restore_event(options={})
     head_event=HeadEvent.create(event_type: 'user_change')
     change_event=head_event.create_user_change_event(event_type: 'restore')
     user_snap=UserSnap.create_snap(options[:user])
-    restore_event=change_event.create_user_restore_event(user_snap_id: user_snap.id, editor_id: current_user.id)
+    restore_event=change_event.create_user_restore_event(user_snap_id: user_snap.id, editor_id: options[:editor].id)
   end
 
 end

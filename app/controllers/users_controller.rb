@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   include UsersHelper
 
   before_action :authenticate_user!, except: [:new, :create]
+  before_action :new_user!, only: [:new, :create]
   #before_action :correct_user!, only: [:edit, :update, :destroy]
   before_action :active_user!, only: [:edit, :update]
   before_action :track_user!, except: [:new, :create]

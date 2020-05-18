@@ -1,0 +1,12 @@
+<article>
+  <div class="event_info">
+    <%= content_tag :span, 'Product created'%>
+    <%= link_to event.product_snap.now.name, product_path(event.product_snap.product_id) %>
+    <%= content_tag :span, to_local_time(event.created_at)%>
+    <%= link_to event.editor.identifier, user_path(event.editor.id) %>
+    <%= content_tag :button, 'Snap'%>
+  </div>
+  <div class="event_details">
+    <%= render 'snap/product', snap: event.product_snap %>
+  </div>
+</article>

@@ -111,6 +111,12 @@ class ActionsController < ApplicationController
     redirect_to root_path
   end
 
+  def events
+    @events=HeadEvent.order(created_at: :desc)
+  end
+
+  private
+
   def product_params(type)
     params.require(type).permit(Product.params)
   end

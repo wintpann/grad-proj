@@ -40,4 +40,11 @@ module SessionsHelper
     end
   end
 
+  def new_user!
+    if logged_in?
+      flash[:danger]='Log out first'
+      redirect_to root_path
+    end
+  end
+
 end

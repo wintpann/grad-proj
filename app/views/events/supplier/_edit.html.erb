@@ -1,0 +1,13 @@
+<article>
+  <div class="event_info">
+    <%= content_tag :span, 'Supplier updated'%>
+    <%= link_to event.snap_from.now.name, supplier_path(event.snap_from.supplier_id) %>
+    <%= content_tag :span, to_local_time(event.created_at)%>
+    <%= link_to event.editor.identifier, user_path(event.editor.id) %>
+    <%= content_tag :button, 'Snap'%>
+  </div>
+  <div class="event_details">
+    <%= render 'snap/supplier', snap: event.snap_from %>
+    <%= render 'snap/supplier', snap: event.snap_to %>
+  </div>
+</article>

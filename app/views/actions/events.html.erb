@@ -1,0 +1,69 @@
+<% if @events && @events.any?%>
+  <% @events.each do |event| %> <br>
+    <% if event.event_type=='user_change' %>
+      <% sub_event=event.user_change_event %>
+
+      <% if sub_event.event_type=='create' %>
+        <% create=sub_event.user_create_event %>
+        <%= render 'events/user/create', event: create%>
+      <% elsif sub_event.event_type=='edit' %>
+        <% edit=sub_event.user_edit_event %>
+        <%= render 'events/user/edit', event: edit%>
+      <% elsif sub_event.event_type=='delete' %>
+        <% delete=sub_event.user_delete_event %>
+        <%= render 'events/user/delete', event: delete%>
+      <% elsif sub_event.event_type=='restore' %>
+        <% restore=sub_event.user_restore_event %>
+        <%= render 'events/user/restore', event: restore%>
+      <% end %>
+
+    <% elsif event.event_type=='supplier_change' %>
+      <% sub_event=event.supplier_change_event %>
+
+      <% if sub_event.event_type=='create' %>
+        <% create=sub_event.supplier_create_event %>
+        <%= render 'events/supplier/create', event: create%>
+      <% elsif sub_event.event_type=='edit' %>
+        <% edit=sub_event.supplier_edit_event %>
+        <%= render 'events/supplier/edit', event: edit%>
+      <% elsif sub_event.event_type=='delete' %>
+        <% delete=sub_event.supplier_delete_event %>
+        <%= render 'events/supplier/delete', event: delete%>
+      <% elsif sub_event.event_type=='restore' %>
+        <% restore=sub_event.supplier_restore_event %>
+        <%= render 'events/supplier/restore', event: restore%>
+      <% end %>
+
+    <% elsif event.event_type=='product_change' %>
+      <% sub_event=event.product_change_event %>
+
+      <% if sub_event.event_type=='create' %>
+        <% create=sub_event.product_create_event %>
+        <%= render 'events/product/create', event: create%>
+      <% elsif sub_event.event_type=='edit' %>
+        <% edit=sub_event.product_edit_event %>
+        <%= render 'events/product/edit', event: edit%>
+      <% elsif sub_event.event_type=='delete' %>
+        <% delete=sub_event.product_delete_event %>
+        <%= render 'events/product/delete', event: delete%>
+      <% elsif sub_event.event_type=='restore' %>
+        <% restore=sub_event.product_restore_event %>
+        <%= render 'events/product/restore', event: restore%>
+      <% end %>
+
+    <% elsif event.event_type=='production_operation' %>
+      <% sub_event=event.production_event %>
+
+      <% if sub_event.event_type=='arrival' %>
+        <%= render 'events/production/arrival', event: sub_event%>
+      <% elsif sub_event.event_type=='realization' %>
+        <%= render 'events/production/realization', event: sub_event%>
+      <% elsif sub_event.event_type=='refund' %>
+        <%= render 'events/production/refund', event: sub_event%>
+      <% elsif sub_event.event_type=='write_off' %>
+        <%= render 'events/production/write_off', event: sub_event%>
+      <% end %>
+
+    <% end %>
+  <% end %>
+<% end %>
