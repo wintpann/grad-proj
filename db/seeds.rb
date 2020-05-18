@@ -27,12 +27,12 @@ save_supplier_create_event(supplier: llc_freedom, editor: admin)
 ltd_sofa=Supplier.create!(name: 'LTD Sofa',
 phone: '8-752-8262',
 address: '65 3rd Ave. Livingston, NJ 07039')
-save_supplier_create_event(supplier: llc_freedom, editor: admin)
+save_supplier_create_event(supplier: ltd_sofa, editor: admin)
 
 co_colonel=Supplier.create!(name: 'CO Colonel',
 phone: '8-823-2652',
 address: '3 Shore Street Clarksburg, WV 26301')
-save_supplier_create_event(supplier: llc_freedom, editor: admin)
+save_supplier_create_event(supplier: co_colonel, editor: admin)
 from=Supplier.last
 co_colonel.update_attribute(:address, '65 3rd Ave. Livingston, NJ 07039')
 save_supplier_edit_event(snap_from: from, snap_to: co_colonel, editor: admin)
@@ -55,7 +55,7 @@ description: 'Amazing cabinet',
 supplier_id: co_colonel.id,
 price_in: 250.15,
 price_out: 480.9)
-save_create_product_event(product: armchair, editor: admin)
+save_create_product_event(product: cabinet, editor: admin)
 
 carpet=Product.create!(code: 'carpet_03',
 name: 'Woolen carpet',
