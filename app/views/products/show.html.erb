@@ -6,3 +6,4 @@
 <%= content_tag :p, "price_out: #{@product.price_out}" %>
 <%= content_tag :p, "active: #{@product.active}" %>
 <%= link_to 'Delete/restore', product_path(@product), method: :delete %>
+<%= link_to 'Edit', edit_product_path(@product) %>

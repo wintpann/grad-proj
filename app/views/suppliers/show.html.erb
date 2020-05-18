@@ -4,3 +4,4 @@
 <%= content_tag :p, "address: #{@supplier.address}" %>
 <%= content_tag :p, "active: #{@supplier.active}" %>
 <%= link_to 'Delete/restore', supplier_path(@supplier), method: :delete %>
+<%= link_to 'Edit', edit_supplier_path(@supplier) %>

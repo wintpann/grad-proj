@@ -25,4 +25,8 @@ class ProductSnap < ApplicationRecord
   def supplier
     Supplier.find(self.supplier_id)
   end
+
+  def now
+    Product.find(self.product_id)
+  end
 end

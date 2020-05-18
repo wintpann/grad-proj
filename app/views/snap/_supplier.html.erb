@@ -1,0 +1,18 @@
+<table>
+  <tr>
+    <td>Name</td>
+    <td><%=snap.name%></td>
+  </tr>
+  <tr>
+    <td>Phone</td>
+    <td><%=snap.phone%></td>
+  </tr>
+  <tr>
+    <td>Address</td>
+    <td><%=snap.address%></td>
+  </tr>
+  <tr>
+    <td>Now</td>
+    <td><%= link_to 'Suppliler', supplier_path(snap.supplier_id)%></td>
+  </tr>
+</table>

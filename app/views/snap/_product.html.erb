@@ -1,0 +1,42 @@
+<table>
+  <tr>
+    <td>Code</td>
+    <td><%=snap.code%></td>
+  </tr>
+  <tr>
+    <td>Name</td>
+    <td><%=snap.name%></td>
+  </tr>
+  <tr>
+    <td>Unit</td>
+    <td><%=snap.unit%></td>
+  </tr>
+  <tr>
+    <td>Active</td>
+    <td><%=snap.active%></td>
+  </tr>
+  <tr>
+    <td>Description</td>
+    <td><%=snap.description%></td>
+  </tr>
+  <tr>
+    <td>Supplier name</td>
+    <td><%=snap.supplier_name%></td>
+  </tr>
+  <tr>
+    <td>Supplier</td>
+    <td><%= link_to 'Supplier', supplier_path(snap.supplier_id)%></td>
+  </tr>
+  <tr>
+    <td>Price in</td>
+    <td><%=snap.price_in%></td>
+  </tr>
+  <tr>
+    <td>Price out</td>
+    <td><%=snap.price_out%></td>
+  </tr>
+  <tr>
+    <td>Now</td>
+    <td><%= link_to 'Product', product_path(snap.product_id)%></td>
+  </tr>
+</table>

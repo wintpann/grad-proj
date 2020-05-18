@@ -3,7 +3,7 @@
     <li><%= link_to 'Log out', logout_path, method: :delete %></li>
   </ul>
   <ul>
-    <li><%= link_to 'users', users_path %> <%= link_to 'new', signup_path %></li>
+    <li><%= link_to 'users', users_path %> <%= link_to 'new', signup_path %> <%= link_to 'me', user_path(current_user) %></li>
     <li><%= link_to 'suppliers', suppliers_path %> <%= link_to 'new', new_supplier_path %></li>
     <li><%= link_to 'products', products_path %> <%= link_to 'new', new_product_path %></li>
   </ul>
