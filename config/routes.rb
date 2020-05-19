@@ -36,5 +36,8 @@ Rails.application.routes.draw do
   get 'invites' => 'actions#invites'
   post 'invites' => 'actions#new_invite'
   delete 'invites' => 'actions#destroy_invite'
+
+  get 'rights' => 'actions#get_rights'
+  post 'rights' => 'actions#set_rights'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -285,7 +285,7 @@ ActiveRecord::Schema.define(version: 2020_05_18_183934) do
     t.string "lastname"
     t.string "password_digest"
     t.string "remember_digest"
-    t.string "role", default: "none"
+    t.string "role", default: ""
     t.boolean "active", default: true
     t.datetime "last_seen"
     t.datetime "created_at", precision: 6, null: false

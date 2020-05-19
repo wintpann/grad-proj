@@ -5,6 +5,51 @@ module ActionsHelper
     return true
   end
 
+  def authorize_user!
+    case params[:action]
+    when 'invites', 'new_invite', 'destroy_invite'
+      if !current_user.can?('invites')
+        flash[:danger]="You don't have right"
+        redirect_to root_path
+      end
+    when 'warehouse'
+      if !current_user.can?('warehouse')
+        flash[:danger]="You don't have right"
+        redirect_to root_path
+      end
+    when 'new_arrival', 'create_arrival'
+      if !current_user.can?('arrival')
+        flash[:danger]="You don't have right"
+        redirect_to root_path
+      end
+    when 'new_realization', 'create_realization'
+      if !current_user.can?('realization')
+        flash[:danger]="You don't have right"
+        redirect_to root_path
+      end
+    when 'new_refund', 'create_refund'
+      if !current_user.can?('refund')
+        flash[:danger]="You don't have right"
+        redirect_to root_path
+      end
+    when 'new_write_off', 'create_write_off'
+      if !current_user.can?('write_off')
+        flash[:danger]="You don't have right"
+        redirect_to root_path
+      end
+    when 'events'
+      if !current_user.can?('events')
+        flash[:danger]="You don't have right"
+        redirect_to root_path
+      end
+    when 'set_rights', 'get_rights'
+      if !current_user.can?('set_rights')
+        flash[:danger]="You don't have right"
+        redirect_to root_path
+      end
+    end
+  end
+
   def save_arrival(options={})
     Warehouse.add_products(options[:params])
     head_event=HeadEvent.create(event_type: 'production_operation')

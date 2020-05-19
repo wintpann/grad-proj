@@ -3,10 +3,9 @@ class UsersController < ApplicationController
 
   before_action :authenticate_user!, except: [:new, :create]
   before_action :new_user!, only: [:new, :create]
-  #before_action :correct_user!, only: [:edit, :update, :destroy]
-  before_action :active_user!, only: [:edit, :update]
+  before_action :active_user!, only: [:edit, :update, :edit_password, :update_password]
   before_action :track_user!, except: [:new, :create]
-  #before_action :authorize_user!
+  before_action :authorize_user!
 
   def new
   end

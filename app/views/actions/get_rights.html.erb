@@ -1,0 +1,73 @@
+<% if @users && @users.any? %>
+  <% @users.each do |user| %>
+  <%= content_tag :h3, user.identifier %>
+    <%= form_for user.identifier, url: rights_path do |f| %>
+    <%= hidden_field_tag "user", user.identifier %>
+    <div>
+      <%= f.label :set_rights %>
+      <%= f.check_box :set_rights, checked: user.can?('set_rights') %>
+    </div>
+    <div>
+      <%= f.label :invites %>
+      <%= f.check_box :invites, checked: user.can?('invites') %>
+    </div>
+    <div>
+      <%= f.label :change_self %>
+      <%= f.check_box :change_self, checked: user.can?('change_self') %>
+    </div>
+    <div>
+      <%= f.label :change_users %>
+      <%= f.check_box :change_users, checked: user.can?('change_users') %>
+    </div>
+    <div>
+      <%= f.label :active_users %>
+      <%= f.check_box :active_users, checked: user.can?('active_users') %>
+    </div>
+    <div>
+      <%= f.label :all_users %>
+      <%= f.check_box :all_users, checked: user.can?('all_users') %>
+    </div>
+    <div>
+      <%= f.label :change_suppliers %>
+      <%= f.check_box :change_suppliers, checked: user.can?('change_suppliers') %>
+    </div>
+    <div>
+      <%= f.label :active_suppliers %>
+      <%= f.check_box :active_suppliers, checked: user.can?('active_suppliers') %>
+    </div>
+    <div>
+      <%= f.label :change_products %>
+      <%= f.check_box :change_products, checked: user.can?('change_products') %>
+    </div>
+    <div>
+      <%= f.label :active_products %>
+      <%= f.check_box :active_products, checked: user.can?('active_products') %>
+    </div>
+    <div>
+      <%= f.label :warehouse %>
+      <%= f.check_box :warehouse, checked: user.can?('warehouse') %>
+    </div>
+    <div>
+      <%= f.label :arrival %>
+      <%= f.check_box :arrival, checked: user.can?('arrival') %>
+    </div>
+    <div>
+      <%= f.label :realization %>
+      <%= f.check_box :realization, checked: user.can?('realization') %>
+    </div>
+    <div>
+      <%= f.label :refund %>
+      <%= f.check_box :refund, checked: user.can?('refund') %>
+    </div>
+    <div>
+      <%= f.label :write_off %>
+      <%= f.check_box :write_off, checked: user.can?('write_off') %>
+    </div>
+    <div>
+      <%= f.label :events %>
+      <%= f.check_box :events, checked: user.can?('events') %>
+    </div>
+    <%= f.submit "Set for #{user.identifier}" %>
+    <% end%>
+  <% end%>
+<% end%>

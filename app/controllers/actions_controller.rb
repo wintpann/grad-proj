@@ -2,6 +2,7 @@ class ActionsController < ApplicationController
   include ActionsHelper
   before_action :authenticate_user!
   before_action :track_user!
+  before_action :authorize_user!
 
   def new_arrival
     if !Product.any?
@@ -123,6 +124,16 @@ class ActionsController < ApplicationController
     @invite=UserInvite.create_invite
   end
 
+  def get_rights
+    @users=User.active
+  end
+
+  def set_rights
+    User.find_by(params[:identifier]).update_rights(rights_params)
+    flash[:success]='Done'
+    redirect_to rights_path
+  end
+
   def destroy_invite
     UserInvite.find(params[:id]).destroy
     redirect_to invites_path
@@ -132,5 +143,9 @@ class ActionsController < ApplicationController
 
   def product_params(type)
     params.require(type).permit(Product.params)
+  end
+
+  def rights_params
+    params.require(params[:user]).permit(rights)
   end
 end
