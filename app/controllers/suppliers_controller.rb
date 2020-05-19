@@ -5,6 +5,7 @@ class SuppliersController < ApplicationController
   before_action :track_user!
   before_action :active_supplier!, only: [:edit, :update]
   before_action :constrain_destroy!, only: :destroy
+  before_action :authorize_user!
 
   def new
     @supplier=Supplier.new

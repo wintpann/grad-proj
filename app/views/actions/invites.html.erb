@@ -1,0 +1,11 @@
+<h3>Unused invites</h3>
+<% if @invites && @invites.any? %>
+  <ul>
+    <% @invites.each do |invite| %>
+      <li>
+        <%= content_tag :span, invite.invite %> <%= link_to 'delete', invites_path(id: invite.id), method: :delete %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+<%= link_to 'Generate a new invite', invites_path, method: :post%>

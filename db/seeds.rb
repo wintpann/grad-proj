@@ -11,7 +11,7 @@ admin=User.create!(identifier: 'admin',
 name: 'John',
 lastname: 'Koff',
 password_digest: password,
-role: 'root')
+role: "set_rights,invites,change_self,change_users,active_users,all_users,change_suppliers,active_suppliers,change_products,active_products,warehouse,arrival,realization,refund,write_off,events")
 save_user_create_event(user: admin)
 from=User.last
 admin.update_attribute(:lastname, 'Kirari')

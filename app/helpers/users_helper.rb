@@ -14,6 +14,34 @@ module UsersHelper
     end
   end
 
+  def authorize_user!
+    case params[:action]
+    when 'edit', 'update'
+      if params[:id]!=current_user.id.to_s
+        if !current_user.can?('change_users')
+          flash[:danger]="You don't have right"
+          redirect_to root_path
+        end
+      else
+        if !current_user.can?('change_self')
+          flash[:danger]="You don't have right"
+          redirect_to root_path
+        end
+      end
+    when 'destroy'
+      if !current_user.can?('active_users')
+        flash[:danger]="You don't have right"
+        redirect_to root_path
+      end
+    when 'index', 'inactive'
+      if !current_user.can?('all_users')
+        flash[:danger]="You don't have right"
+        redirect_to root_path
+      end
+    end
+  end
+
+
   def save_user_create_event(options={})
     head_event=HeadEvent.create(event_type: 'user_change')
     change_event=head_event.create_user_change_event(event_type: 'create')

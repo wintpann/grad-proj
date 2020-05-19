@@ -8,4 +8,12 @@ module ApplicationHelper
     (time+3.hours).to_s[0..-4]
   end
 
+  def rights
+    [:set_rights, :invites,
+     :change_self, :change_users, :active_users, :all_users,
+     :change_suppliers, :active_suppliers,
+     :change_products, :active_products,
+     :warehouse, :arrival, :realization, :refund, :write_off, :events]
+  end
+
 end

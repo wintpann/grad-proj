@@ -49,4 +49,31 @@ class User < ApplicationRecord
     BCrypt::Password.new(remember_digest)==remember_token
   end
 
+  def can?(action)
+    self.role.split(',').each do |a|
+      return true if a==action
+    end
+    return false
+  end
+
+  def add_right(right)
+    self.update_attribute(:role, self.role+",#{right}")
+  end
+
+  def remove_right(right)
+    temp=[]
+    self.role.split(',').each do |a|
+      temp << a if a!=right
+    end
+    self.update_attribute(:role, temp.join(','))
+  end
+
+  def update_rights(params)
+    new_rights=[]
+    params.each do |right|
+      new_rights << right[0] if right[1]=='1'
+    end
+    self.update_attribute(:role, new_rights.join(','))
+  end
+
 end

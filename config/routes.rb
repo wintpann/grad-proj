@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :users, except: :new
   get 'signup' => 'users#new'
   get 'inusers' => 'users#inactive'
+  get 'change_password' => 'users#edit_password'
+  post 'change_password' => 'users#update_password'
 
   post 'login' => 'sessions#create'
   get 'login' => 'sessions#new'
@@ -30,5 +32,12 @@ Rails.application.routes.draw do
   get 'warehouse' => 'actions#warehouse'
 
   get 'events' => 'actions#events'
+
+  get 'invites' => 'actions#invites'
+  post 'invites' => 'actions#new_invite'
+  delete 'invites' => 'actions#destroy_invite'
+
+  get 'rights' => 'actions#get_rights'
+  post 'rights' => 'actions#set_rights'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

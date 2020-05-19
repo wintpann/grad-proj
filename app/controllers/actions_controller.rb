@@ -2,6 +2,11 @@ class ActionsController < ApplicationController
   include ActionsHelper
   before_action :authenticate_user!
   before_action :track_user!
+  before_action :authorize_user!
+
+  before_action do
+    @warehouses=Warehouse.all
+  end
 
   def new_arrival
     if !Product.any?
@@ -24,8 +29,6 @@ class ActionsController < ApplicationController
   end
 
   def new_realization
-    @warehouses=Warehouse.all
-
     if @warehouses.empty?
       flash[:danger]="Nothing to sell"
       redirect_to root_path
@@ -35,14 +38,12 @@ class ActionsController < ApplicationController
   def create_realization
     if empty_products?(product_params(:realization))
       flash.now[:danger]="Empty realization"
-      @warehouses=Warehouse.all
       render 'new_realization'
       return
     end
 
     if Warehouse.more_than_is?(product_params(:realization))
       flash.now[:danger]="Can not sell more than have"
-      @warehouses=Warehouse.all
       render 'new_realization'
       return
     end
@@ -52,12 +53,9 @@ class ActionsController < ApplicationController
   end
 
   def warehouse
-    @warehouses=Warehouse.all
   end
 
   def new_write_off
-    @warehouses=Warehouse.all
-
     if @warehouses.empty?
       flash[:danger]="Nothing to write-off"
       redirect_to root_path
@@ -67,14 +65,12 @@ class ActionsController < ApplicationController
   def create_write_off
     if empty_products?(product_params(:write_off))
       flash.now[:danger]="Empty write-off"
-      @warehouses=Warehouse.all
       render 'new_write_off'
       return
     end
 
     if Warehouse.more_than_is?(product_params(:write_off))
       flash.now[:danger]="Can not write-off more than have"
-      @warehouses=Warehouse.all
       render 'new_write_off'
       return
     end
@@ -84,8 +80,6 @@ class ActionsController < ApplicationController
   end
 
   def new_refund
-    @warehouses=Warehouse.all
-
     if @warehouses.empty?
       flash[:danger]="Nothing to refund"
       redirect_to root_path
@@ -95,14 +89,12 @@ class ActionsController < ApplicationController
   def create_refund
     if empty_products?(product_params(:refund))
       flash.now[:danger]="Empty refund"
-      @warehouses=Warehouse.all
       render 'new_refund'
       return
     end
 
     if Warehouse.more_than_is?(product_params(:refund))
       flash.now[:danger]="Can not refund more than have"
-      @warehouses=Warehouse.all
       render 'new_refund'
       return
     end
@@ -115,9 +107,36 @@ class ActionsController < ApplicationController
     @events=HeadEvent.order(created_at: :desc)
   end
 
+  def invites
+    @invites=UserInvite.all
+  end
+
+  def new_invite
+    @invite=UserInvite.create_invite
+  end
+
+  def get_rights
+    @users=User.active
+  end
+
+  def set_rights
+    User.find_by(params[:identifier]).update_rights(rights_params)
+    flash[:success]='Done'
+    redirect_to rights_path
+  end
+
+  def destroy_invite
+    UserInvite.find(params[:id]).destroy
+    redirect_to invites_path
+  end
+
   private
 
   def product_params(type)
     params.require(type).permit(Product.params)
+  end
+
+  def rights_params
+    params.require(params[:user]).permit(rights)
   end
 end

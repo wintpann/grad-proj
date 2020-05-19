@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string :lastname
       t.string :password_digest
       t.string :remember_digest
-      t.string :role, default: 'none'
+      t.string :role, default: ''
       t.boolean :active, default: true
       t.datetime :last_seen
 

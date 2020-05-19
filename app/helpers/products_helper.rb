@@ -7,11 +7,36 @@ module ProductsHelper
     end
   end
 
+  def authorize_user!
+    case params[:action]
+    when 'edit', 'update'
+      if !current_user.can?('change_products')
+        flash[:danger]="You don't have right"
+        redirect_to root_path
+      end
+    when 'destroy'
+      if !current_user.can?('active_products')
+        flash[:danger]="You don't have right"
+        redirect_to root_path
+      end
+    end
+  end
+
   def constrain_restore!
     product=Product.find(params[:id])
     if !product.active?
       if !product.supplier.active?
         flash[:danger]="Denied. Its supplier is deleted"
+        redirect_to root_path
+      end
+    end
+  end
+
+  def constrain_delete!
+    product=Product.find(params[:id])
+    if product.active?
+      if !Warehouse.new_product?(product.id)
+        flash[:danger]="Denied. There is the product in warehouse"
         redirect_to root_path
       end
     end

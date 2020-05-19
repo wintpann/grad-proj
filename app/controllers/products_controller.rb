@@ -5,6 +5,8 @@ class ProductsController < ApplicationController
   before_action :track_user!
   before_action :active_product!, only: [:edit, :update]
   before_action :constrain_restore!, only: :destroy
+  before_action :constrain_delete!, only: :destroy
+  before_action :authorize_user!
 
   def new
     supplier_must_be_available
