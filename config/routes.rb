@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :users, except: :new
   get 'signup' => 'users#new'
   get 'inusers' => 'users#inactive'
+  get 'change_password' => 'users#edit_password'
+  post 'change_password' => 'users#update_password'
 
   post 'login' => 'sessions#create'
   get 'login' => 'sessions#new'
