@@ -1,12 +1,10 @@
-<article>
-  <div class="event_info">
-    <%= content_tag :span, 'User created'%>
-    <%= link_to event.user_snap.now.identifier, user_path(event.user_snap.user_id) %>
-    <%= content_tag :span, to_local_time(event.created_at)%>
-    <%= content_tag :span, '---'%>
-    <%= content_tag :button, 'Snap'%>
-  </div>
-  <div class="event_details">
-    <%= render 'snap/user', snap: event.user_snap %>
-  </div>
-</article>
+<ul class="event_info">
+  <li><%= content_tag :span, 'User created'%></li>
+  <li><%= link_to event.user_snap.now.identifier, user_path(event.user_snap.user_id), class: :mark %></li>
+  <li><%= content_tag :span, to_local_time(event.created_at)%></li>
+  <li><%= content_tag :span, '—'%></li>
+  <li><%= content_tag :button, 'Snap'%></li>
+</ul>
+<div class="event_details">
+  <%= render 'snap/user', snap: event.user_snap %>
+</div>

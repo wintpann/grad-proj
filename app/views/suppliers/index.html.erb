@@ -1,9 +1,12 @@
-<h3>Supplier list</h3>
+<h3 class="page-name">Supplier list</h3>
+<%= link_to 'Deleted suppliers', insuppliers_path, class: :btn %>
+<%= link_to 'New supplier', new_supplier_path, class: :btn %>
 <% if @suppliers && @suppliers.any? %>
   <ul>
     <% @suppliers.each do |supplier| %>
-      <li>
+      <li class="collection-item list-2">
         <%= link_to supplier.name, supplier_path(supplier) %>
+        <%= content_tag :span, "(#{supplier.address})" %>
       </li>
     <% end %>
   </ul>

@@ -1,33 +1,33 @@
-<div>
-  <%= f.label :code %>
+<div class="form-field">
+  <%= f.label :code, class: :mark %>
   <%= f.text_field :code %>
 </div>
-<div>
-  <%= f.label :name %>
+<div class="form-field">
+  <%= f.label :name, class: :mark %>
   <%= f.text_field :name %>
 </div>
-<div>
-  <%= f.label :unit %>
+<div class="form-field">
+  <%= f.label :unit, class: :mark %>
   <%= f.text_field :unit %>
 </div>
-<div>
-  <%= f.label :description %>
+<div class="form-field">
+  <%= f.label :description, class: :mark %>
   <%= f.text_area :description %>
 </div>
-<div>
-  <%= f.label :supplier, "Supplier" %>
+<div class="form-field">
+  <%= f.label :supplier, "Supplier", class: :mark %>
   <%= f.select(:supplier) do %>
     <% Supplier.active.each do |s| %>
       <%= content_tag :option, "(#{s.id}) #{s.name}", value: s.id %>
     <% end %>
   <% end %>
 </div>
-<div>
-  <%= f.label :price_in %>
+<div class="form-field">
+  <%= f.label :price_in, class: :mark %>
   <%= f.text_field :price_in %>
 </div>
-<div>
-  <%= f.label :price_out %>
+<div class="form-field">
+  <%= f.label :price_out, class: :mark %>
   <%= f.text_field :price_out %>
 </div>
 <%= f.submit %>

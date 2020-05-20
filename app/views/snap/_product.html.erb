@@ -1,42 +1,10 @@
-<table>
-  <tr>
-    <td>Code</td>
-    <td><%=snap.code%></td>
-  </tr>
-  <tr>
-    <td>Name</td>
-    <td><%=snap.name%></td>
-  </tr>
-  <tr>
-    <td>Unit</td>
-    <td><%=snap.unit%></td>
-  </tr>
-  <tr>
-    <td>Active</td>
-    <td><%=snap.active%></td>
-  </tr>
-  <tr>
-    <td>Description</td>
-    <td><%=snap.description%></td>
-  </tr>
-  <tr>
-    <td>Supplier name</td>
-    <td><%=snap.supplier_name%></td>
-  </tr>
-  <tr>
-    <td>Supplier</td>
-    <td><%= link_to 'Supplier', supplier_path(snap.supplier_id)%></td>
-  </tr>
-  <tr>
-    <td>Price in</td>
-    <td><%=snap.price_in%></td>
-  </tr>
-  <tr>
-    <td>Price out</td>
-    <td><%=snap.price_out%></td>
-  </tr>
-  <tr>
-    <td>Now</td>
-    <td><%= link_to 'Product', product_path(snap.product_id)%></td>
-  </tr>
-</table>
+<div class="info">
+  <p>Code: <%= content_tag :span, snap.code%></p>
+  <p>Name: <%= content_tag :span, snap.name%></p>
+  <p>Description: <%= content_tag :span, snap.description%></p>
+  <p>Supplier: <%= content_tag :span, snap.supplier.name%></p>
+  <p>Price in: <%= content_tag :span, snap.price_in%></p>
+  <p>Price out: <%= content_tag :span, snap.price_out%></p>
+  <p>Active: <%= content_tag :span, snap.active%></p>
+  <p>Now: <%= link_to 'Product', product_path(snap.product_id), class: :mark%></p>
+</div>

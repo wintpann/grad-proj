@@ -1,11 +1,11 @@
-<h3>Arrival</h3>
+<h3 class="page-name">Arrival</h3>
 <%= form_for 'arrival', url: arrival_path do |f| %>
   <% @products.each do |product| %>
-    <div>
-      <%= f.label product.code %>
+    <div class="form-field list-3">
+      <%= f.label product.code, class: :mark %>
       <%= f.text_field product.id, value: 0 %>
       <%= content_tag :span, product.unit %>
     </div>
   <% end %>
-  <%= f.submit "Arrived" %>
+  <%= f.submit "Done" %>
 <% end %>

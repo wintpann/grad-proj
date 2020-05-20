@@ -76,4 +76,45 @@ class User < ApplicationRecord
     self.update_attribute(:role, new_rights.join(','))
   end
 
+  def rights
+    temp=[]
+    self.role.split(',').each do |r|
+      case r
+      when 'set_rights'
+        temp << r.humanize
+      when 'invites'
+        temp << 'Generate invites'
+      when 'change_self'
+        temp << r.humanize
+      when 'change_users'
+        temp << r.humanize
+      when 'active_users'
+        temp << 'Delete/Restore users'
+      when 'all_users'
+        temp << r.humanize
+      when 'change_suppliers'
+        temp << r.humanize
+      when 'active_suppliers'
+        temp << 'Delete/Restore suppliers'
+      when 'change_products'
+        temp << r.humanize
+      when 'active_products'
+        temp << 'Delete/Restore products'
+      when 'warehouse'
+        temp << r.humanize
+      when 'arrival'
+        temp << r.humanize
+      when 'realization'
+        temp << r.humanize
+      when 'refund'
+        temp << r.humanize
+      when 'write_off'
+        temp << r.humanize
+      when 'events'
+        temp << r.humanize
+      end
+    end
+    return temp
+  end
+
 end

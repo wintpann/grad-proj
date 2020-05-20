@@ -1,12 +1,10 @@
-<article>
-  <div class="event_info">
-    <%= content_tag :span, 'Supplier deleted'%>
-    <%= link_to event.supplier_snap.now.name, supplier_path(event.supplier_snap.supplier_id) %>
-    <%= content_tag :span, to_local_time(event.created_at)%>
-    <%= link_to event.editor.identifier, user_path(event.editor.id) %>
-    <%= content_tag :button, 'Snap'%>
-  </div>
-  <div class="event_details">
-    <%= render 'snap/supplier', snap: event.supplier_snap %>
-  </div>
-</article>
+<ul class="event_info">
+  <li><%= content_tag :span, 'Supplier deleted'%></li>
+  <li><%= link_to event.supplier_snap.now.name, supplier_path(event.supplier_snap.supplier_id), class: :mark %></li>
+  <li><%= content_tag :span, to_local_time(event.created_at)%></li>
+  <li><%= link_to event.editor.identifier, user_path(event.editor.id), class: :mark %></li>
+  <li><%= content_tag :button, 'Snap'%></li>
+</ul>
+<div class="event_details">
+  <%= render 'snap/supplier', snap: event.supplier_snap %>
+</div>

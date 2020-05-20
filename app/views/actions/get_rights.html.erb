@@ -1,71 +1,73 @@
 <% if @users && @users.any? %>
   <% @users.each do |user| %>
-  <%= content_tag :h3, user.identifier %>
+  <%= content_tag :h3, "#{user.identifier} (#{user.name} #{user.lastname})", class: 'page-name mark list-1' %>
     <%= form_for user.identifier, url: rights_path do |f| %>
     <%= hidden_field_tag "user", user.identifier %>
-    <div>
-      <%= f.label :set_rights %>
-      <%= f.check_box :set_rights, checked: user.can?('set_rights') %>
-    </div>
-    <div>
-      <%= f.label :invites %>
-      <%= f.check_box :invites, checked: user.can?('invites') %>
-    </div>
-    <div>
-      <%= f.label :change_self %>
-      <%= f.check_box :change_self, checked: user.can?('change_self') %>
-    </div>
-    <div>
-      <%= f.label :change_users %>
-      <%= f.check_box :change_users, checked: user.can?('change_users') %>
-    </div>
-    <div>
-      <%= f.label :active_users %>
-      <%= f.check_box :active_users, checked: user.can?('active_users') %>
-    </div>
-    <div>
-      <%= f.label :all_users %>
-      <%= f.check_box :all_users, checked: user.can?('all_users') %>
-    </div>
-    <div>
-      <%= f.label :change_suppliers %>
-      <%= f.check_box :change_suppliers, checked: user.can?('change_suppliers') %>
-    </div>
-    <div>
-      <%= f.label :active_suppliers %>
-      <%= f.check_box :active_suppliers, checked: user.can?('active_suppliers') %>
-    </div>
-    <div>
-      <%= f.label :change_products %>
-      <%= f.check_box :change_products, checked: user.can?('change_products') %>
-    </div>
-    <div>
-      <%= f.label :active_products %>
-      <%= f.check_box :active_products, checked: user.can?('active_products') %>
-    </div>
-    <div>
-      <%= f.label :warehouse %>
-      <%= f.check_box :warehouse, checked: user.can?('warehouse') %>
-    </div>
-    <div>
-      <%= f.label :arrival %>
-      <%= f.check_box :arrival, checked: user.can?('arrival') %>
-    </div>
-    <div>
-      <%= f.label :realization %>
-      <%= f.check_box :realization, checked: user.can?('realization') %>
-    </div>
-    <div>
-      <%= f.label :refund %>
-      <%= f.check_box :refund, checked: user.can?('refund') %>
-    </div>
-    <div>
-      <%= f.label :write_off %>
-      <%= f.check_box :write_off, checked: user.can?('write_off') %>
-    </div>
-    <div>
-      <%= f.label :events %>
-      <%= f.check_box :events, checked: user.can?('events') %>
+    <div class="wall noselect">
+      <div class="btn">
+        <%= f.check_box :set_rights, checked: user.can?('set_rights') %>
+        <%= f.label :set_rights, 'Set rights', class: :btn %>
+      </div>
+       <div class="btn">
+        <%= f.check_box :invites, checked: user.can?('invites') %>
+        <%= f.label :invites, 'Generate invites', class: :btn %>
+      </div>
+       <div class="btn">
+        <%= f.check_box :change_self, checked: user.can?('change_self') %>
+        <%= f.label :change_self, 'Change self', class: :btn %>
+      </div>
+       <div class="btn">
+        <%= f.check_box :change_users, checked: user.can?('change_users') %>
+        <%= f.label :change_users, 'Change users', class: :btn %>
+      </div>
+       <div class="btn">
+        <%= f.check_box :active_users, checked: user.can?('active_users') %>
+        <%= f.label :active_users, 'Delete/Restore users', class: :btn %>
+      </div>
+       <div class="btn">
+        <%= f.check_box :all_users, checked: user.can?('all_users') %>
+        <%= f.label :all_users, 'All users', class: :btn %>
+      </div>
+       <div class="btn">
+        <%= f.check_box :change_suppliers, checked: user.can?('change_suppliers') %>
+        <%= f.label :change_suppliers, 'Change suppliers', class: :btn %>
+      </div>
+       <div class="btn">
+        <%= f.check_box :active_suppliers, checked: user.can?('active_suppliers') %>
+        <%= f.label :active_suppliers, 'Delete/Restore suppliers', class: :btn %>
+      </div>
+       <div class="btn">
+        <%= f.check_box :change_products, checked: user.can?('change_products') %>
+        <%= f.label :change_products, 'Change products', class: :btn %>
+      </div>
+       <div class="btn">
+        <%= f.check_box :active_products, checked: user.can?('active_products') %>
+        <%= f.label :active_products, 'Delete/Restore products', class: :btn %>
+      </div>
+       <div class="btn">
+        <%= f.check_box :warehouse, checked: user.can?('warehouse') %>
+        <%= f.label :warehouse, 'Warehouse', class: :btn %>
+      </div>
+       <div class="btn">
+        <%= f.check_box :arrival, checked: user.can?('arrival') %>
+        <%= f.label :arrival, 'Arrival', class: :btn %>
+      </div>
+       <div class="btn">
+        <%= f.check_box :realization, checked: user.can?('realization') %>
+        <%= f.label :realization, 'Realization', class: :btn %>
+      </div>
+       <div class="btn">
+        <%= f.check_box :refund, checked: user.can?('refund') %>
+        <%= f.label :refund, 'Refund', class: :btn %>
+      </div>
+       <div class="btn">
+        <%= f.check_box :write_off, checked: user.can?('write_off') %>
+        <%= f.label :write_off, 'Write off', class: :btn %>
+      </div>
+       <div class="btn">
+        <%= f.check_box :events, checked: user.can?('events') %>
+        <%= f.label :events, 'Events', class: :btn %>
+      </div>
     </div>
     <%= f.submit "Set for #{user.identifier}" %>
     <% end%>

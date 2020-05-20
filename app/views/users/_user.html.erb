@@ -1,21 +1,21 @@
-<div>
-  <%= f.label :identifier %>
+<div class="form-field">
+  <%= f.label :identifier, class: :mark %>
   <%= f.text_field :identifier %>
 </div>
-<div>
-  <%= f.label :name %>
+<div class="form-field">
+  <%= f.label :name, class: :mark %>
   <%= f.text_field :name %>
 </div>
-<div>
-  <%= f.label :lastname %>
+<div class="form-field">
+  <%= f.label :lastname, class: :mark %>
   <%= f.text_field :lastname %>
 </div>
-<div>
-  <%= f.label :password %>
+<div class="form-field">
+  <%= f.label :password, class: :mark %>
   <%= f.password_field :password %>
 </div>
-<div>
-  <%= f.label :password_confirmation %>
+<div class="form-field">
+  <%= f.label :password_confirmation, class: :mark %>
   <%= f.password_field :password_confirmation %>
 </div>
 <%= f.submit %>

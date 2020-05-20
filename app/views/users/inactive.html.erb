@@ -1,9 +1,10 @@
-<h3>Inactive users</h3>
+<h3 class="page-name">Deleted users</h3>
 <% if @users && @users.any? %>
   <ul>
     <% @users.each do |user| %>
-      <li>
+      <li class="collection-item list-1">
         <%= link_to user.identifier, user_path(user) %>
+        <%= content_tag :span, "(#{user.name} #{user.lastname})" %>
       </li>
     <% end %>
   </ul>
