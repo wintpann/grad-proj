@@ -15,6 +15,7 @@ class ArrivalEvent < ApplicationRecord
                                   amount: amount,
                                   sum: product_snap.price_in*amount)
         arrival_event.production_event.update_sum(arrival_event.sum)
+        arrival_event.production_event.head_event.update_sum(arrival_event.sum)
       end
     end
   end
