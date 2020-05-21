@@ -12,7 +12,7 @@
     <%= f.select(:type) do %>
       <%= content_tag :option, 'All', value: 'all' %>
       <% event_types.each do |t| %>
-        <%= content_tag :option, t[0], value: t[1] %>
+        <%= content_tag :option, t[0], value: t[1], selected: params[:filter][:type]==t[1] %>
       <% end %>
     <% end %>
   </div>
@@ -21,7 +21,7 @@
     <%= f.select(:supplier) do %>
       <%= content_tag :option, 'All', value: 'all' %>
       <% Supplier.all.each do |s| %>
-        <%= content_tag :option, s.name, value: s.id %>
+        <%= content_tag :option, s.name, value: s.id, selected: params[:filter][:supplier]==s.id.to_s %>
       <% end %>
     <% end %>
   </div>
@@ -30,7 +30,7 @@
     <%= f.select(:product) do %>
       <%= content_tag :option, 'All', value: 'all' %>
       <% Product.all.each do |s| %>
-        <%= content_tag :option, s.code, value: s.id %>
+        <%= content_tag :option, s.code, value: s.id, selected: params[:filter][:product]==s.id.to_s %>
       <% end %>
     <% end %>
   </div>
@@ -39,7 +39,7 @@
     <%= f.select(:editor) do %>
       <%= content_tag :option, 'All', value: 'all' %>
       <% User.all.each do |s| %>
-        <%= content_tag :option, "#{s.name} #{s.lastname}", value: s.identifier %>
+        <%= content_tag :option, "#{s.name} #{s.lastname} (#{s.identifier})", value: s.id, selected: params[:filter][:editor]==s.id.to_s %>
       <% end %>
     <% end %>
   </div>
@@ -47,7 +47,7 @@
     <%= f.label :sort, "Sort by", class: :mark %>
     <%= f.select(:sort) do %>
       <% sort_types.each do |s| %>
-        <%= content_tag :option, s[0], value: s[1] %>
+        <%= content_tag :option, s[0], value: s[1], selected: params[:filter][:sort]==s[1] %>
       <% end %>
     <% end %>
   </div>
