@@ -3,5 +3,5 @@
   <p>Имя: <%= content_tag :span, snap.name%></p>
   <p>Телефон: <%= content_tag :span, snap.phone%></p>
   <p>Адрес: <%= content_tag :span, snap.address%></p>
-  <p>Сейчас: <%= link_to 'Suppliler', supplier_path(snap.supplier_id), class: :mark%></p>
+  <p>Сейчас: <%= link_to 'Перейти', supplier_path(snap.supplier_id), class: :mark%></p>
 </div>

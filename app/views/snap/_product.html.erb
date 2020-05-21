@@ -6,5 +6,5 @@
   <p>Цена закупки: <%= content_tag :span, snap.price_in%></p>
   <p>Цена продажи: <%= content_tag :span, snap.price_out%></p>
   <p>Активный: <%= content_tag :span, snap.active%></p>
-  <p>Сейчас: <%= link_to 'Product', product_path(snap.product_id), class: :mark%></p>
+  <p>Сейчас: <%= link_to 'Перейти', product_path(snap.product_id), class: :mark%></p>
 </div>
