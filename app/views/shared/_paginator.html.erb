@@ -1,0 +1,11 @@
+<% links=get_links(@all_events) %>
+<ul class="paginator">
+  <% links[:left].upto(links[:right]) do |link| %>
+    <% if link==params[:page].to_i %><li class="current_page btn2"><% else %><li class="btn2"><% end %>
+        <%= link_to "#{link}", events_path(page: link) %>
+    </li>
+  <% end %>
+  <% if @all_events.total_pages!=links[:right] %>
+    <li class="btn2"><%= link_to "⇢", events_path(page: links[:right]+1) %></li>
+  <% end %>
+</ul>

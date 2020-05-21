@@ -145,6 +145,9 @@ template {
 [hidden] {
   display: none;
 }
+.hidden {
+  display: none;
+}
 h1,h2,h3,h4,h5,h6,b{
   font-weight: normal;
 }
@@ -460,4 +463,25 @@ body {
     width: 90%;
     margin: 0 5%;
   }
+}
+.event_details{
+  display: none;
+}
+.paginator{
+  width: 80%;
+  background-color: rgba(255, 150, 100, 0.3);
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+}
+.paginator>li{
+  padding: 10px;
+  margin: 5px;
+  cursor: default;
+  font-size: 1.1rem;
+}
+.current_page{
+  background-color: rgba(150, 255, 100, 0.3);
+  transform: scale(1.2);
+  box-shadow: 0 0 2px black;
 }

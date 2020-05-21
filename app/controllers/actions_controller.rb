@@ -104,7 +104,15 @@ class ActionsController < ApplicationController
   end
 
   def events
-    @events=HeadEvent.order(created_at: :desc)
+    @all_events=HeadEvent.order(created_at: :desc)
+    @all_events.paginate(params[:page])
+
+    if HeadEvent.bad_page?
+      redirect_to events_path(page: 1)
+      return
+    end
+
+    @events=@all_events.paginate(params[:page])
   end
 
   def invites
