@@ -104,14 +104,22 @@ class ActionsController < ApplicationController
   end
 
   def events
-    @all_events=HeadEvent.order(created_at: :desc)
+    @all_events=HeadEvent.all
     @all_events.paginate(params[:page])
+    filter=params[:filter]
 
-    if HeadEvent.bad_page?
-      redirect_to events_path(page: 1)
+    if @all_events.empty?
+      flash[:danger]="You don't have any events"
+      redirect_to root_path
       return
     end
 
+    if HeadEvent.bad_page? || !params[:filter] || params[:filter][:date_from].empty? || params[:filter][:date_to].empty?
+      redirect_to events_path(page: 1, filter:{type: 'all', supplier: 'all', product: 'all', editor: 'all', date_from: HeadEvent.first.created_at.strftime('%Y-%m-%d'), date_to: HeadEvent.last.created_at.strftime('%Y-%m-%d'), sort: 'date_desc'})
+      return
+    end
+
+    @all_events=@all_events.filter_events(filter)
     @events=@all_events.paginate(params[:page])
   end
 
@@ -146,5 +154,9 @@ class ActionsController < ApplicationController
 
   def rights_params
     params.require(params[:user]).permit(rights)
+  end
+
+  def filter_params
+    params.require(:filter).permit(:date_from, :date_to, :type, :supplier, :product, :editor, :sort)
   end
 end

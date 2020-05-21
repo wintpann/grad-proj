@@ -2,10 +2,10 @@
 <ul class="paginator">
   <% links[:left].upto(links[:right]) do |link| %>
     <% if link==params[:page].to_i %><li class="current_page btn2"><% else %><li class="btn2"><% end %>
-        <%= link_to "#{link}", events_path(page: link) %>
+        <%= link_to "#{link}", events_path(page: link, filter: {date_from: params[:filter][:date_from],date_to: params[:filter][:date_to],type: params[:filter][:type],supplier: params[:filter][:supplier],product: params[:filter][:product],editor: params[:filter][:editor],sort: params[:filter][:sort]}) %>
     </li>
   <% end %>
   <% if @all_events.total_pages!=links[:right] %>
-    <li class="btn2"><%= link_to "⇢", events_path(page: links[:right]+1) %></li>
+    <li class="btn2"><%= link_to "⇢", events_path(page: links[:right]+1, filter: {date_from: params[:filter][:date_from],date_to: params[:filter][:date_to],type: params[:filter][:type],supplier: params[:filter][:supplier],product: params[:filter][:product],editor: params[:filter][:editor],sort: params[:filter][:sort]}) %></li>
   <% end %>
 </ul>

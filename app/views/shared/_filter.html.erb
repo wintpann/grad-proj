@@ -1,0 +1,56 @@
+<%= form_for :filter, url: events_path, method: :get do |f| %>
+  <div class="filter">
+    <%= f.label :date_from, class: :mark %>
+    <%= f.date_field :date_from, value: params[:filter][:date_from] || HeadEvent.all.first.created_at.strftime('%Y-%m-%d') %>
+  </div>
+  <div class="filter">
+    <%= f.label :date_to, class: :mark %>
+    <%= f.date_field :date_to, value:  params[:filter][:date_to] || HeadEvent.all.last.created_at.strftime('%Y-%m-%d') %>
+  </div>
+  <div class="filter">
+    <%= f.label :type, "Type", class: :mark %>
+    <%= f.select(:type) do %>
+      <%= content_tag :option, 'All', value: 'all' %>
+      <% event_types.each do |t| %>
+        <%= content_tag :option, t[0], value: t[1] %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="filter">
+    <%= f.label :supplier, "Supplier", class: :mark %>
+    <%= f.select(:supplier) do %>
+      <%= content_tag :option, 'All', value: 'all' %>
+      <% Supplier.all.each do |s| %>
+        <%= content_tag :option, s.name, value: s.id %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="filter">
+    <%= f.label :product, "Product", class: :mark %>
+    <%= f.select(:product) do %>
+      <%= content_tag :option, 'All', value: 'all' %>
+      <% Product.all.each do |s| %>
+        <%= content_tag :option, s.code, value: s.id %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="filter">
+    <%= f.label :editor, "Editor", class: :mark %>
+    <%= f.select(:editor) do %>
+      <%= content_tag :option, 'All', value: 'all' %>
+      <% User.all.each do |s| %>
+        <%= content_tag :option, "#{s.name} #{s.lastname}", value: s.identifier %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="filter">
+    <%= f.label :sort, "Sort by", class: :mark %>
+    <%= f.select(:sort) do %>
+      <% sort_types.each do |s| %>
+        <%= content_tag :option, s[0], value: s[1] %>
+      <% end %>
+    <% end %>
+  </div>
+  <%= hidden_field_tag :page, params[:page] %>
+  <%= f.submit 'Apply' %>
+<% end %>

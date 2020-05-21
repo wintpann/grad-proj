@@ -1,5 +1,6 @@
-<%= render 'shared/paginator'%>
+<%= render 'shared/filter'%>
 <% if @events && @events.any?%>
+  <%= render 'shared/paginator'%>
   <ul class="event_info columns">
     <li><%= content_tag :span, 'Type'%></li>
     <li><%= content_tag :span, 'Info'%></li>
@@ -76,4 +77,6 @@
       <% end %>
     </div>
   <% end %>
+<% else %>
+  <h3 class="page-name">No one</h3>
 <% end %>

@@ -311,7 +311,7 @@ input[type=submit], select, textarea {
     border-radius: 5px;
     cursor:pointer;
 }
-input[type=text], input[type=password]{
+input[type=text], input[type=password], input[type=date]{
     padding:5px 15px;
     background:#ccc;
     border:0 none;
@@ -484,4 +484,8 @@ body {
   background-color: rgba(150, 255, 100, 0.3);
   transform: scale(1.2);
   box-shadow: 0 0 2px black;
+}
+.filter{
+  display: inline-block;
+  margin: 0 5px;
 }

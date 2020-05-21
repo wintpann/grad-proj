@@ -3,7 +3,7 @@ class ApplicationRecord < ActiveRecord::Base
   @@bad_page=false
   @@current_page=0
   @@links_count=9
-  @@items_for_page=2
+  @@items_for_page=40
 
   def self.items_for_page
     @@items_for_page

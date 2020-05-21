@@ -16,6 +16,17 @@ module ApplicationHelper
      :warehouse, :arrival, :realization, :refund, :write_off, :events]
   end
 
+  def event_types
+    {'User created'=>'user_created','User updated'=>'user_updated', 'User deleted'=>'user_deleted', 'User restored'=>'user_restored',
+     'Supplier created'=>'supplier_created','Supplier updated'=>'supplier_updated', 'Supplier deleted'=>'supplier_deleted', 'Supplier restored'=>'supplier_restored',
+     'Product created'=>'product_created','Product updated'=>'product_updated', 'Product deleted'=>'product_deleted', 'Product restored'=>'product_restored',
+     'Arrival'=>'arrival', 'Refund'=>'refund', 'Write-off'=>'write_off', 'Realization'=>'realization'}
+  end
+
+  def sort_types
+    {'Sum (biggest first)'=>'sum_desc','Sum (smallest first)'=>'sum_asc','Date (newest first)'=>'date_decs','Date (oldest first)'=>'date_asc'}
+  end
+
   def get_links(model)
     links={}
     links[:left]=model.current_page-model.links_half
