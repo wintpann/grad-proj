@@ -1,10 +1,12 @@
-<h3>Warehouse</h3>
+<h3 class="page-name">Warehouse</h3>
 <% if @warehouses && @warehouses.any? %>
   <ul>
     <% @warehouses.each do |warehouse| %>
-      <li>
-        <%= warehouse.amount %>
-        <%= link_to warehouse.product.code, product_path(warehouse.product.id) %>
+      <li class="collection-item list-3">
+        <%= link_to warehouse.product.code, product_path(warehouse.product.id) %>:
+        <%= content_tag :span, "(#{warehouse.product.name})" %>
+        <%= content_tag :b, warehouse.amount, class: :mark %>
+        <%= content_tag :span, warehouse.product.unit %>
       </li>
     <% end %>
   </ul>

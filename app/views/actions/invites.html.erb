@@ -1,11 +1,11 @@
-<h3>Unused invites</h3>
+<h3 class="page-name">Unused invites</h3>
 <% if @invites && @invites.any? %>
   <ul>
     <% @invites.each do |invite| %>
-      <li>
-        <%= content_tag :span, invite.invite %> <%= link_to 'delete', invites_path(id: invite.id), method: :delete %>
+      <li class="collection-item">
+        <%= content_tag :b, invite.invite, class: :mark %> <%= link_to 'delete', invites_path(id: invite.id), method: :delete, class: :btn2 %>
       </li>
     <% end %>
   </ul>
 <% end %>
-<%= link_to 'Generate a new invite', invites_path, method: :post%>
+<%= link_to 'Generate a new invite', invites_path, method: :post, class: :btn%>

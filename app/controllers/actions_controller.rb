@@ -120,7 +120,7 @@ class ActionsController < ApplicationController
   end
 
   def set_rights
-    User.find_by(params[:identifier]).update_rights(rights_params)
+    User.find_by(identifier: params[:user]).update_rights(rights_params)
     flash[:success]='Done'
     redirect_to rights_path
   end

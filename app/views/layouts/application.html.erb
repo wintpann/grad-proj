@@ -11,8 +11,12 @@
 
   <body>
     <%= render 'shared/header' %>
-    <%= render 'shared/flash' %>
-    <%= render 'shared/errors' %>
-    <%= yield %>
+    <div class="wrapper">
+      <%= render 'shared/flash' %>
+      <%= render 'shared/errors' %>
+      <div class="content">
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>
