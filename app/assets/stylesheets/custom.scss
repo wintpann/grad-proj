@@ -389,6 +389,9 @@ form{
   margin: 5px 0;
   background-color: rgba(100, 150, 255, 0.1);
 }
+.event_info>li:first-of-type{
+  text-shadow: 0 0 1px #333;
+}
 .event_info>*{
   display: inline-block;
   width: 17%;
@@ -464,7 +467,7 @@ body {
     margin: 0 5%;
   }
 }
-.event_details{
+.hidden{
   display: none;
 }
 .paginator{

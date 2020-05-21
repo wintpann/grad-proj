@@ -3,8 +3,8 @@
   <li><%= link_to event.user_snap.now.identifier, user_path(event.user_snap.user_id), class: :mark %></li>
   <li><%= content_tag :span, to_local_time(event.created_at)%></li>
   <li><%= content_tag :span, '—'%></li>
-  <li><%= content_tag :button, 'Snap'%></li>
+  <li><button onclick="details('details_<%=event.user_change_event.head_event.id%>')">Snap</button></li>
 </ul>
-<div class="event_details">
+<div class="event_details hidden" id="details_<%=event.user_change_event.head_event.id%>">
   <%= render 'snap/user', snap: event.user_snap %>
 </div>

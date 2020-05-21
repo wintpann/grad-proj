@@ -80,3 +80,14 @@
 <% else %>
   <h3 class="page-name">No one</h3>
 <% end %>
+<script type="text/javascript">
+  function details(id){
+    var element = document.getElementById(id);
+    if (element.classList.contains("hidden")){
+      element.classList.remove("hidden");
+    }else{
+      element.classList.add("hidden");
+    }
+
+  }
+</script>
