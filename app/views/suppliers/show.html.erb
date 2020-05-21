@@ -1,11 +1,11 @@
 <div class="info">
-  <p>Identifier: <%= content_tag :span, @supplier.id%></p>
-  <p>Name: <%= content_tag :span, @supplier.name%></p>
-  <p>Phone: <%= content_tag :span, @supplier.phone%></p>
-  <p>Address: <%= content_tag :span, @supplier.address%></p>
-  <p>Active: <%= content_tag :span, @supplier.active%></p>
+  <p>Идентификатор: <%= content_tag :span, @supplier.id%></p>
+  <p>Имя: <%= content_tag :span, @supplier.name%></p>
+  <p>Телефон: <%= content_tag :span, @supplier.phone%></p>
+  <p>Адрес: <%= content_tag :span, @supplier.address%></p>
+  <p>Активный: <%= content_tag :span, @supplier.active%></p>
 </div>
 <div class="crud">
-  <%= link_to 'Delete/restore', supplier_path(@supplier), method: :delete, class: :btn %>
-  <%= link_to 'Edit', edit_supplier_path(@supplier), class: :btn %>
+  <%= link_to 'Удалить/восстановить', supplier_path(@supplier), method: :delete, class: :btn %>
+  <%= link_to 'Редактировать', edit_supplier_path(@supplier), class: :btn %>
 </div>

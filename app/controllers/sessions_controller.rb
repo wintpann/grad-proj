@@ -8,10 +8,10 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(session_params[:password])
       log_in(@user)
       remember(@user)
-      flash[:success]="Welcome, #{@user.name} #{@user.lastname}"
+      flash[:success]="Добро пожаловать, #{@user.name}"
       redirect_to root_path
     else
-      flash[:danger]='Invalid login/password'
+      flash[:danger]='Неправильный логин/пароль'
       redirect_to login_path
     end
   end

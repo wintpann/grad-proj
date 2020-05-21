@@ -17,14 +17,14 @@ module ApplicationHelper
   end
 
   def event_types
-    {'User created'=>'user_create','User updated'=>'user_edit', 'User deleted'=>'user_delete', 'User restored'=>'user_restore',
-     'Supplier created'=>'supplier_create','Supplier updated'=>'supplier_edit', 'Supplier deleted'=>'supplier_delete', 'Supplier restored'=>'supplier_restore',
-     'Product created'=>'product_create','Product updated'=>'product_edit', 'Product deleted'=>'product_delete', 'Product restored'=>'product_restore',
-     'Arrival'=>'arrival', 'Refund'=>'refund', 'Write-off'=>'write_off', 'Realization'=>'realization'}
+    {'Пользователь создан'=>'user_create','Пользователь обновлен'=>'user_edit', 'Пользователь удален'=>'user_delete', 'Пользователь восстановлен'=>'user_restore',
+     'Поставщик создан'=>'supplier_create','Поставщик обновлен'=>'supplier_edit', 'Поставщик удален'=>'supplier_delete', 'Поставщик восстановлен'=>'supplier_restore',
+     'Продукт создан'=>'product_create','Продукт обновлен'=>'product_edit', 'Продукт удален'=>'product_delete', 'Продукт восстановлен'=>'product_restore',
+     'Поступление'=>'arrival', 'Возврат'=>'refund', 'Списание'=>'write_off', 'Реализация'=>'realization'}
   end
 
   def sort_types
-    {'Date (newest first)'=>'date_decs','Date (oldest first)'=>'date_asc','Sum (biggest first)'=>'sum_desc','Sum (smallest first)'=>'sum_asc'}
+    {'Дате (сперва новые)'=>'date_decs','Дате (сперва старые)'=>'date_asc','Сумме (сперва большие)'=>'sum_desc','Сумме (сперва малые)'=>'sum_asc'}
   end
 
   def get_links(model)

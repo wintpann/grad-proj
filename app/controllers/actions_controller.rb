@@ -10,7 +10,7 @@ class ActionsController < ApplicationController
 
   def new_arrival
     if !Product.any?
-      flash[:danger]='No products to arrive'
+      flash[:danger]='Нет продуктов для поступления'
       redirect_to root_path
     end
     @products=Product.active
@@ -18,7 +18,7 @@ class ActionsController < ApplicationController
 
   def create_arrival
     if empty_products?(product_params(:arrival))
-      flash.now[:danger]='Empty arrival'
+      flash.now[:danger]='Пустое поступление'
       @products=Product.active
       render 'new_arrival'
       return
@@ -30,20 +30,20 @@ class ActionsController < ApplicationController
 
   def new_realization
     if @warehouses.empty?
-      flash[:danger]="Nothing to sell"
+      flash[:danger]="Нечего продавать"
       redirect_to root_path
     end
   end
 
   def create_realization
     if empty_products?(product_params(:realization))
-      flash.now[:danger]="Empty realization"
+      flash.now[:danger]="Пустая реализация"
       render 'new_realization'
       return
     end
 
     if Warehouse.more_than_is?(product_params(:realization))
-      flash.now[:danger]="Can not sell more than have"
+      flash.now[:danger]="Нельзя продать больше чем есть на складе"
       render 'new_realization'
       return
     end
@@ -57,20 +57,20 @@ class ActionsController < ApplicationController
 
   def new_write_off
     if @warehouses.empty?
-      flash[:danger]="Nothing to write-off"
+      flash[:danger]="Нечего списывать"
       redirect_to root_path
     end
   end
 
   def create_write_off
     if empty_products?(product_params(:write_off))
-      flash.now[:danger]="Empty write-off"
+      flash.now[:danger]="Пустое списание"
       render 'new_write_off'
       return
     end
 
     if Warehouse.more_than_is?(product_params(:write_off))
-      flash.now[:danger]="Can not write-off more than have"
+      flash.now[:danger]="Нельзя списать больше чем есть на складе"
       render 'new_write_off'
       return
     end
@@ -81,20 +81,20 @@ class ActionsController < ApplicationController
 
   def new_refund
     if @warehouses.empty?
-      flash[:danger]="Nothing to refund"
+      flash[:danger]="Нечего возвращать"
       redirect_to root_path
     end
   end
 
   def create_refund
     if empty_products?(product_params(:refund))
-      flash.now[:danger]="Empty refund"
+      flash.now[:danger]="Пустой возврат"
       render 'new_refund'
       return
     end
 
     if Warehouse.more_than_is?(product_params(:refund))
-      flash.now[:danger]="Can not refund more than have"
+      flash.now[:danger]="Нельзя вернуть больше чем есть на складе"
       render 'new_refund'
       return
     end
@@ -109,7 +109,7 @@ class ActionsController < ApplicationController
     filter=params[:filter]
 
     if @all_events.empty?
-      flash[:danger]="You don't have any events"
+      flash[:danger]="Пока нет никаких событий"
       redirect_to root_path
       return
     end
@@ -137,7 +137,7 @@ class ActionsController < ApplicationController
 
   def set_rights
     User.find_by(identifier: params[:user]).update_rights(rights_params)
-    flash[:success]='Done'
+    flash[:success]='Права изменены'
     redirect_to rights_path
   end
 

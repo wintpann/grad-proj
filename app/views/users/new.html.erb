@@ -1,7 +1,7 @@
-<h3 class="page-name">New user</h3>
+<h3 class="page-name">Новый пользователь</h3>
 <%= form_for :user, url: users_path do |f| %>
 <div class="form-field">
-  <%= label_tag :invite_code, 'Invite code', class: :mark %>
+  <%= label_tag :invite_code, 'Код приглашения', class: :mark %>
   <%= text_field_tag :invite_code, params[:invite_code] %>
 </div>
   <%= render 'user', f: f %>

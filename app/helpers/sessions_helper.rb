@@ -35,14 +35,14 @@ module SessionsHelper
 
   def authenticate_user!
     if !logged_in?
-      flash[:danger]='Authentication required'
+      flash[:danger]='Требуется вход'
       redirect_to root_path
     end
   end
 
   def new_user!
     if logged_in?
-      flash[:danger]='Log out first'
+      flash[:danger]='Сначала покиньте этот аккаунт'
       redirect_to root_path
     end
   end

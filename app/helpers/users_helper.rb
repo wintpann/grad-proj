@@ -2,14 +2,14 @@ module UsersHelper
 
   def correct_user!
     if params[:id].to_i!=current_user.id
-      flash[:danger]="Access denied"
+      flash[:danger]="В доступе отказано"
       redirect_to root_path
     end
   end
 
   def active_user!
     if !User.find(params[:id].to_i).active?
-      flash[:danger]="Denied. Restore user first"
+      flash[:danger]="Отказано. Сперва восстановите пользователя"
       redirect_to root_path
     end
   end
@@ -19,23 +19,23 @@ module UsersHelper
     when 'edit', 'update'
       if params[:id]!=current_user.id.to_s
         if !current_user.can?('change_users')
-          flash[:danger]="You don't have right"
+          flash[:danger]="В доступе отказано"
           redirect_to root_path
         end
       else
         if !current_user.can?('change_self')
-          flash[:danger]="You don't have right"
+          flash[:danger]="В доступе отказано"
           redirect_to root_path
         end
       end
     when 'destroy'
       if !current_user.can?('active_users')
-        flash[:danger]="You don't have right"
+        flash[:danger]="В доступе отказано"
         redirect_to root_path
       end
     when 'index', 'inactive'
       if !current_user.can?('all_users')
-        flash[:danger]="You don't have right"
+        flash[:danger]="В доступе отказано"
         redirect_to root_path
       end
     end

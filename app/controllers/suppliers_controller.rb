@@ -16,7 +16,7 @@ class SuppliersController < ApplicationController
 
     if @supplier.save
       save_supplier_create_event(supplier: @supplier, editor: current_user)
-      flash[:success]='Supplier created'
+      flash[:success]='Поставщик создан'
       redirect_to supplier_path(@supplier)
     else
       @errors=@supplier.errors.full_messages
@@ -36,7 +36,7 @@ class SuppliersController < ApplicationController
 
     if @supplier.update(supplier_params)
       save_supplier_edit_event(snap_from: @old, snap_to: @supplier, editor: current_user)
-      flash[:success]="Supplier updated"
+      flash[:success]="Поставщие обновлен"
       redirect_to supplier_path(@supplier)
     else
       @errors=@supplier.errors.full_messages
@@ -61,10 +61,10 @@ class SuppliersController < ApplicationController
     supplier=Supplier.find(params[:id])
 
     if supplier.active?
-      flash[:success]="Supplier deleted"
+      flash[:success]="Поставщик удален"
       save_supplier_delete_event(supplier: supplier, editor: current_user)
     else
-      flash[:success]="Supplier restored"
+      flash[:success]="Поставщик восстановлен"
       save_supplier_restore_event(supplier: supplier, editor: current_user)
     end
 

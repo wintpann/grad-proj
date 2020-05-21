@@ -2,26 +2,26 @@
   <nav class="main-nav">
     <% if logged_in? %>
       <ul class="actions" >
-        <li class="nav-item"><%= link_to 'users', users_path %></li>
-        <li class="nav-item"><%= link_to 'suppliers', suppliers_path %></li>
-        <li class="nav-item"><%= link_to 'products', products_path %> </li>
-        <li class="nav-item"><%= link_to 'warehouse', warehouse_path %></li>
-        <li class="nav-item"><%= link_to 'arrival', arrival_path %></li>
-        <li class="nav-item"><%= link_to 'realization', realization_path %></li>
-        <li class="nav-item"><%= link_to 'refund', refund_path %></li>
-        <li class="nav-item"><%= link_to 'write off', write_off_path %></li>
-        <li class="nav-item"><%= link_to 'invites', invites_path %></li>
-        <li class="nav-item"><%= link_to 'events', events_path %></li>
-        <li class="nav-item"><%= link_to 'rights', rights_path %></li>
+        <li class="nav-item"><%= link_to 'пользователи', users_path %></li>
+        <li class="nav-item"><%= link_to 'поставщики', suppliers_path %></li>
+        <li class="nav-item"><%= link_to 'продукты', products_path %> </li>
+        <li class="nav-item"><%= link_to 'склад', warehouse_path %></li>
+        <li class="nav-item"><%= link_to 'поступление', arrival_path %></li>
+        <li class="nav-item"><%= link_to 'реализация', realization_path %></li>
+        <li class="nav-item"><%= link_to 'возврат', refund_path %></li>
+        <li class="nav-item"><%= link_to 'списание', write_off_path %></li>
+        <li class="nav-item"><%= link_to 'приглашения', invites_path %></li>
+        <li class="nav-item"><%= link_to 'события', events_path %></li>
+        <li class="nav-item"><%= link_to 'права', rights_path %></li>
       </ul>
       <ul class="log right" >
-        <li class="nav-item"><%= link_to 'Log out', logout_path, method: :delete %></li>
-        <li class="nav-item"><%= link_to 'My account', user_path(current_user) %></li>
+        <li class="nav-item"><%= link_to 'Выйти', logout_path, method: :delete %></li>
+        <li class="nav-item"><%= link_to 'Мой аккаунт', user_path(current_user) %></li>
       </ul>
     <% else %>
       <ul class="log" >
-        <li class="nav-item"><%= link_to 'Login', login_path %></li>
-        <li class="nav-item"><%= link_to 'Sign up', signup_path %></li>
+        <li class="nav-item"><%= link_to 'Войти', login_path %></li>
+        <li class="nav-item"><%= link_to 'Регистрация', signup_path %></li>
       </ul>
     <% end %>
   </nav>

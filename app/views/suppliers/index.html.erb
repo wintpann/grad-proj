@@ -1,6 +1,6 @@
-<h3 class="page-name">Supplier list</h3>
-<%= link_to 'Deleted suppliers', insuppliers_path, class: :btn %>
-<%= link_to 'New supplier', new_supplier_path, class: :btn %>
+<h3 class="page-name">Активные поставщики</h3>
+<%= link_to 'Удаленные поставщики', insuppliers_path, class: :btn %>
+<%= link_to 'Новый поставщик', new_supplier_path, class: :btn %>
 <% if @suppliers && @suppliers.any? %>
   <ul>
     <% @suppliers.each do |supplier| %>

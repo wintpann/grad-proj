@@ -1,21 +1,21 @@
 <div class="form-field">
-  <%= f.label :code, class: :mark %>
+  <%= f.label :code, 'Артикул', class: :mark %>
   <%= f.text_field :code %>
 </div>
 <div class="form-field">
-  <%= f.label :name, class: :mark %>
+  <%= f.label :name, 'Наименование', class: :mark %>
   <%= f.text_field :name %>
 </div>
 <div class="form-field">
-  <%= f.label :unit, class: :mark %>
+  <%= f.label :unit, 'Единицы измерения', class: :mark %>
   <%= f.text_field :unit %>
 </div>
 <div class="form-field">
-  <%= f.label :description, class: :mark %>
+  <%= f.label :description, 'Описание', class: :mark %>
   <%= f.text_area :description %>
 </div>
 <div class="form-field">
-  <%= f.label :supplier, "Supplier", class: :mark %>
+  <%= f.label :supplier, 'Поставщик', class: :mark %>
   <%= f.select(:supplier) do %>
     <% Supplier.active.each do |s| %>
       <%= content_tag :option, "(#{s.id}) #{s.name}", value: s.id %>
@@ -23,11 +23,11 @@
   <% end %>
 </div>
 <div class="form-field">
-  <%= f.label :price_in, class: :mark %>
+  <%= f.label :price_in, 'Цена закупки', class: :mark %>
   <%= f.text_field :price_in %>
 </div>
 <div class="form-field">
-  <%= f.label :price_out, class: :mark %>
+  <%= f.label :price_out, 'Цена продажи', class: :mark %>
   <%= f.text_field :price_out %>
 </div>
-<%= f.submit %>
+<%= f.submit 'Готово' %>

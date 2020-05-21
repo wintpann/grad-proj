@@ -1,13 +1,13 @@
 <div class="info">
-  <p>Code: <%= content_tag :span, @product.code%></p>
-  <p>Name: <%= content_tag :span, @product.name%></p>
-  <p>Description: <%= content_tag :span, @product.description%></p>
-  <p>Supplier: <%= content_tag :span, @product.supplier.name%></p>
-  <p>Price in: <%= content_tag :span, @product.price_in%></p>
-  <p>Price out: <%= content_tag :span, @product.price_out%></p>
-  <p>Active: <%= content_tag :span, @product.active%></p>
+  <p>Артикул: <%= content_tag :span, @product.code%></p>
+  <p>Наименование: <%= content_tag :span, @product.name%></p>
+  <p>Описание: <%= content_tag :span, @product.description%></p>
+  <p>Поставщие: <%= content_tag :span, @product.supplier.name%></p>
+  <p>Цена закупки: <%= content_tag :span, @product.price_in%></p>
+  <p>Цена продажи: <%= content_tag :span, @product.price_out%></p>
+  <p>Активный: <%= content_tag :span, @product.active%></p>
 </div>
 <div class="crud">
-  <%= link_to 'Delete/restore', product_path(@product), method: :delete, class: :btn %>
-  <%= link_to 'Edit', edit_product_path(@product), class: :btn %>
+  <%= link_to 'Удалить/восстановить', product_path(@product), method: :delete, class: :btn %>
+  <%= link_to 'Редактировать', edit_product_path(@product), class: :btn %>
 </div>

@@ -6,70 +6,70 @@
     <div class="wall noselect">
       <div class="btn">
         <%= f.check_box :set_rights, checked: user.can?('set_rights') %>
-        <%= f.label :set_rights, 'Set rights', class: :btn %>
+        <%= f.label :set_rights, 'Назначать права', class: :btn %>
       </div>
        <div class="btn">
         <%= f.check_box :invites, checked: user.can?('invites') %>
-        <%= f.label :invites, 'Generate invites', class: :btn %>
+        <%= f.label :invites, 'Делать приглашения', class: :btn %>
       </div>
        <div class="btn">
         <%= f.check_box :change_self, checked: user.can?('change_self') %>
-        <%= f.label :change_self, 'Change self', class: :btn %>
+        <%= f.label :change_self, 'Редактировать себя', class: :btn %>
       </div>
        <div class="btn">
         <%= f.check_box :change_users, checked: user.can?('change_users') %>
-        <%= f.label :change_users, 'Change users', class: :btn %>
+        <%= f.label :change_users, 'Редактировать пользователей', class: :btn %>
       </div>
        <div class="btn">
         <%= f.check_box :active_users, checked: user.can?('active_users') %>
-        <%= f.label :active_users, 'Delete/Restore users', class: :btn %>
+        <%= f.label :active_users, 'Удалять/восстанавливать пользователей', class: :btn %>
       </div>
        <div class="btn">
         <%= f.check_box :all_users, checked: user.can?('all_users') %>
-        <%= f.label :all_users, 'All users', class: :btn %>
+        <%= f.label :all_users, 'Смотреть всех пользователей', class: :btn %>
       </div>
        <div class="btn">
         <%= f.check_box :change_suppliers, checked: user.can?('change_suppliers') %>
-        <%= f.label :change_suppliers, 'Change suppliers', class: :btn %>
+        <%= f.label :change_suppliers, 'Редактировать поставщиков', class: :btn %>
       </div>
        <div class="btn">
         <%= f.check_box :active_suppliers, checked: user.can?('active_suppliers') %>
-        <%= f.label :active_suppliers, 'Delete/Restore suppliers', class: :btn %>
+        <%= f.label :active_suppliers, 'Удалять/восстанавливать поставщиков', class: :btn %>
       </div>
        <div class="btn">
         <%= f.check_box :change_products, checked: user.can?('change_products') %>
-        <%= f.label :change_products, 'Change products', class: :btn %>
+        <%= f.label :change_products, 'Редактировать продукты', class: :btn %>
       </div>
        <div class="btn">
         <%= f.check_box :active_products, checked: user.can?('active_products') %>
-        <%= f.label :active_products, 'Delete/Restore products', class: :btn %>
+        <%= f.label :active_products, 'Удалять/восстанавливать продукты', class: :btn %>
       </div>
        <div class="btn">
         <%= f.check_box :warehouse, checked: user.can?('warehouse') %>
-        <%= f.label :warehouse, 'Warehouse', class: :btn %>
+        <%= f.label :warehouse, 'Склад', class: :btn %>
       </div>
        <div class="btn">
         <%= f.check_box :arrival, checked: user.can?('arrival') %>
-        <%= f.label :arrival, 'Arrival', class: :btn %>
+        <%= f.label :arrival, 'Поступление товара', class: :btn %>
       </div>
        <div class="btn">
         <%= f.check_box :realization, checked: user.can?('realization') %>
-        <%= f.label :realization, 'Realization', class: :btn %>
+        <%= f.label :realization, 'Реализация товара', class: :btn %>
       </div>
        <div class="btn">
         <%= f.check_box :refund, checked: user.can?('refund') %>
-        <%= f.label :refund, 'Refund', class: :btn %>
+        <%= f.label :refund, 'Возврат товара', class: :btn %>
       </div>
        <div class="btn">
         <%= f.check_box :write_off, checked: user.can?('write_off') %>
-        <%= f.label :write_off, 'Write off', class: :btn %>
+        <%= f.label :write_off, 'Списание товара', class: :btn %>
       </div>
        <div class="btn">
         <%= f.check_box :events, checked: user.can?('events') %>
-        <%= f.label :events, 'Events', class: :btn %>
+        <%= f.label :events, 'Все события', class: :btn %>
       </div>
     </div>
-    <%= f.submit "Set for #{user.identifier}" %>
+    <%= f.submit "Применить для #{user.identifier}" %>
     <% end%>
   <% end%>
 <% end%>

@@ -1,6 +1,6 @@
-<h3 class="page-name">Product list</h3>
-<%= link_to 'Deleted products', inproducts_path, class: :btn %>
-<%= link_to 'New product', new_product_path, class: :btn %>
+<h3 class="page-name">Активные продукты</h3>
+<%= link_to 'Удаленные продукты', inproducts_path, class: :btn %>
+<%= link_to 'Новый продукт', new_product_path, class: :btn %>
 <% if @products && @products.any? %>
   <ul>
     <% @products.each do |product| %>

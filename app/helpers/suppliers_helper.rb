@@ -2,7 +2,7 @@ module SuppliersHelper
 
   def active_supplier!
     if !Supplier.find(params[:id].to_i).active?
-      flash[:danger]="Denied. Restore supplier first"
+      flash[:danger]="Отказано. Сперва восстановите поставщика"
       redirect_to root_path
     end
   end
@@ -11,7 +11,7 @@ module SuppliersHelper
     supplier=Supplier.find(params[:id])
     if supplier.active?
       if supplier.products.active.any?
-        flash[:danger]="Denied. Supplier is attached to < #{supplier.products.active.codes.join(', ')} >"
+        flash[:danger]="Отказано. Поставщик привязан к продуктам: < #{supplier.products.active.codes.join(', ')} >"
         redirect_to root_path
       end
     end
@@ -21,12 +21,12 @@ module SuppliersHelper
     case params[:action]
     when 'edit', 'update', 'new', 'create'
       if !current_user.can?('change_suppliers')
-        flash[:danger]="You don't have right"
+        flash[:danger]="В доступе отказано"
         redirect_to root_path
       end
     when 'destroy'
       if !current_user.can?('active_suppliers')
-        flash[:danger]="You don't have right"
+        flash[:danger]="В доступе отказано"
         redirect_to root_path
       end
     end

@@ -1,11 +1,11 @@
-<h3 class="page-name">User list</h3>
-<%= link_to 'Deleted users', inusers_path, class: :btn %>
+<h3 class="page-name">Активные пользователи</h3>
+<%= link_to 'Удаленные пользователи', inusers_path, class: :btn %>
 <% if @users && @users.any? %>
   <ul>
     <% @users.each do |user| %>
       <li class="collection-item list-1">
         <%= link_to user.identifier, user_path(user) %>
-        <%= content_tag :span, "(#{user.name} #{user.lastname}) | last seen: #{user.last_seen}" %>
+        <%= content_tag :span, "(#{user.name} #{user.lastname}) | последняя активность: #{to_local_time(user.last_seen)}" %>
       </li>
     <% end %>
   </ul>

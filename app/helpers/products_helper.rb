@@ -2,7 +2,7 @@ module ProductsHelper
 
   def active_product!
     if !Product.find(params[:id].to_i).active?
-      flash[:danger]="Denied. Restore product first"
+      flash[:danger]="Отказано. Сперва восстановите продукт"
       redirect_to root_path
     end
   end
@@ -11,12 +11,12 @@ module ProductsHelper
     case params[:action]
     when 'edit', 'update', 'new', 'create'
       if !current_user.can?('change_products')
-        flash[:danger]="You don't have right"
+        flash[:danger]="В доступе отказано"
         redirect_to root_path
       end
     when 'destroy'
       if !current_user.can?('active_products')
-        flash[:danger]="You don't have right"
+        flash[:danger]="В доступе отказано"
         redirect_to root_path
       end
     end
@@ -26,7 +26,7 @@ module ProductsHelper
     product=Product.find(params[:id])
     if !product.active?
       if !product.supplier.active?
-        flash[:danger]="Denied. Its supplier is deleted"
+        flash[:danger]="Отказано. Сперва восстановите соответствующего поставщика"
         redirect_to root_path
       end
     end
@@ -36,7 +36,7 @@ module ProductsHelper
     product=Product.find(params[:id])
     if product.active?
       if !Warehouse.new_product?(product.id)
-        flash[:danger]="Denied. There is the product in warehouse"
+        flash[:danger]="Отказано. Этот продукт есть на складе"
         redirect_to root_path
       end
     end

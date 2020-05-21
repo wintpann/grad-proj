@@ -2,11 +2,11 @@
 <% if @events && @events.any?%>
   <%= render 'shared/paginator'%>
   <ul class="event_info columns">
-    <li><%= content_tag :span, 'Type'%></li>
-    <li><%= content_tag :span, 'Info'%></li>
-    <li><%= content_tag :span, 'Date'%></li>
-    <li><%= content_tag :span, 'By'%></li>
-    <li><%= content_tag :span, 'Details'%></li>
+    <li><%= content_tag :span, 'Тип'%></li>
+    <li><%= content_tag :span, 'Инфо'%></li>
+    <li><%= content_tag :span, 'Дата'%></li>
+    <li><%= content_tag :span, 'Редактор'%></li>
+    <li><%= content_tag :span, 'Детали'%></li>
   </ul>
   <% @events.each do |event| %>
     <div class="event">
@@ -78,7 +78,7 @@
     </div>
   <% end %>
 <% else %>
-  <h3 class="page-name">No one</h3>
+  <h3 class="page-name">Нет таких</h3>
 <% end %>
 <script type="text/javascript">
   function details(id){

@@ -18,7 +18,7 @@ class ProductsController < ApplicationController
     @product.supplier_id=params[:product][:supplier]
     if @product.save
       save_create_product_event(product: @product, editor: current_user)
-      flash[:success]="Product created"
+      flash[:success]="Продукт создан"
       redirect_to root_path
     else
       @errors=@product.errors.full_messages
@@ -38,7 +38,7 @@ class ProductsController < ApplicationController
     @old=Product.find(params[:id])
     if @product.update(product_params)
       save_product_edit_event(snap_from: @old, snap_to: @product, editor: current_user)
-      flash[:success]="Product updated"
+      flash[:success]="Продукт обновлен"
       redirect_to root_path
     else
       @errors=@product.errors.full_messages
@@ -62,10 +62,10 @@ class ProductsController < ApplicationController
     product=Product.find(params[:id])
 
     if product.active?
-      flash[:success]="Product deleted"
+      flash[:success]="Продукт удален"
       save_product_delete_event(product: product, editor: current_user)
     else
-      flash[:success]="Product restored"
+      flash[:success]="Product восстановлен"
       save_product_restore_event(product: product, editor: current_user)
     end
 
@@ -78,7 +78,7 @@ class ProductsController < ApplicationController
 
   def supplier_must_be_available
     if !Supplier.active.any?
-      flash[:danger]="At least one supplier must exist and be active"
+      flash[:danger]="Хотя бы один поставщик должен быть доступен"
       redirect_to root_path
     end
   end

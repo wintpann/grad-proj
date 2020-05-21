@@ -1,17 +1,17 @@
 <div class="info">
-  <p>Identifier: <%= content_tag :span, @user.identifier%></p>
-  <p>Name: <%= content_tag :span, @user.name%></p>
-  <p>Lastname: <%= content_tag :span, @user.lastname%></p>
-  <p>Last seen: <%= content_tag :span, to_local_time(@user.last_seen)%></p>
-  <p class="separate-span">Rights:
+  <p>Идентификатор: <%= content_tag :span, @user.identifier%></p>
+  <p>Имя: <%= content_tag :span, @user.name%></p>
+  <p>Фамилия: <%= content_tag :span, @user.lastname%></p>
+  <p>Заходил: <%= content_tag :span, to_local_time(@user.last_seen)%></p>
+  <p class="separate-span">Права:
     <% @user.rights.each do |right| %>
       <%= content_tag :span, right %>
     <% end %>
   </p>
-  <p>Active: <%= content_tag :span, @user.active%></p>
+  <p>Активный: <%= content_tag :span, @user.active%></p>
 </div>
 <div class="crud">
-  <%= link_to 'Delete/restore', user_path(@user), method: :delete, class: :btn %>
-  <%= link_to 'Edit', edit_user_path(@user), class: :btn %>
-  <%= link_to 'Change password', change_password_path, class: :btn %>
+  <%= link_to 'Удалить/восстановить', user_path(@user), method: :delete, class: :btn %>
+  <%= link_to 'Редактировать', edit_user_path(@user), class: :btn %>
+  <%= link_to 'Изменить пароль', change_password_path, class: :btn %>
 </div>

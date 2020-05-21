@@ -1,13 +1,13 @@
-<h3 class="page-name">Login</h3>
+<h3 class="page-name">Вход</h3>
 <%= form_for 'session', url: login_path do |f| %>
 <div class="form-field">
-  <%= f.label :identifier, class: :mark %>
+  <%= f.label :identifier, 'Идентификатор', class: :mark %>
   <%= f.text_field :identifier %>
 </div>
 <div class="form-field">
-  <%= f.label :password, class: :mark %>
+  <%= f.label :password, 'Пароль', class: :mark %>
   <%= f.password_field :password %>
 </div>
-<%= f.submit 'Login' %>
+<%= f.submit 'Войти' %>
 
 <% end %>

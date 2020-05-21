@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     @user=User.new(user_all_params)
 
     if !UserInvite.exists?(params[:invite_code])
-      flash.now[:danger]='Invite code is invalid'
+      flash.now[:danger]='Код приглашения не действителен'
       render 'new'
       return
     end
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
       remember(@user)
       save_user_create_event(user: @user)
       UserInvite.find_by(invite: params[:invite_code]).destroy
-      flash[:success]="User created"
+      flash[:success]="Добро пожаловать, #{@user.name}"
       redirect_to user_path(@user)
     else
       @errors=@user.errors.full_messages
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
 
     if @user.update(user_info_params)
       save_user_edit_event(user_to: @user, user_from: @old, editor: current_user)
-      flash[:success]="User updated"
+      flash[:success]="Пользователь обновлен"
       redirect_to user_path(@user)
     else
       @errors=@user.errors.full_messages
@@ -67,7 +67,7 @@ class UsersController < ApplicationController
     @old=User.find(current_user.id)
 
     if @user.update(user_password_params)
-      flash[:success]="Password updated"
+      flash[:success]="Пароль изменен"
       redirect_to user_path(@user)
     else
       @errors=@user.errors.full_messages
@@ -80,10 +80,10 @@ class UsersController < ApplicationController
     user=User.find(params[:id])
 
     if user.active?
-      flash[:success]="User deleted"
+      flash[:success]="Пользователь удален"
       save_user_delete_event(user: user, editor: current_user)
     else
-      flash[:success]="User restored"
+      flash[:success]="Пользователь восстановлен"
       save_user_restore_event(user: user, editor: current_user)
     end
 

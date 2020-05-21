@@ -1,0 +1,24 @@
+ru:
+  activerecord:
+    models:
+      user: Событие
+      supplier: Поставщик
+      product: Продукт
+    attributes:
+      user:
+        name: Имя
+        lastname: Фамилия
+        identifier: Идентификатор
+        password: Пароль
+        password_confirmation: Подтверждение пароля
+      supplier:
+        name: Имя
+        phone: Телефон
+        address: Адрес
+      product:
+        code: Артикул
+        name: Имя
+        unit: Единицы измерения
+        description: Описание
+        price_in: Цена закупки
+        price_out: Цена продажи

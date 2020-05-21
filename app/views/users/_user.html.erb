@@ -1,21 +1,21 @@
 <div class="form-field">
-  <%= f.label :identifier, class: :mark %>
+  <%= f.label :identifier, 'Идентификатор', class: :mark %>
   <%= f.text_field :identifier %>
 </div>
 <div class="form-field">
-  <%= f.label :name, class: :mark %>
+  <%= f.label :name, 'Имя', class: :mark %>
   <%= f.text_field :name %>
 </div>
 <div class="form-field">
-  <%= f.label :lastname, class: :mark %>
+  <%= f.label :lastname, 'Фамилия', class: :mark %>
   <%= f.text_field :lastname %>
 </div>
 <div class="form-field">
-  <%= f.label :password, class: :mark %>
+  <%= f.label :password, 'Пароль', class: :mark %>
   <%= f.password_field :password %>
 </div>
 <div class="form-field">
-  <%= f.label :password_confirmation, class: :mark %>
+  <%= f.label :password_confirmation, 'Подтверждение пароля', class: :mark %>
   <%= f.password_field :password_confirmation %>
 </div>
-<%= f.submit %>
+<%= f.submit 'Готово' %>
