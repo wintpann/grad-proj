@@ -14,7 +14,7 @@ class User < ApplicationRecord
 
   validates :identifier, uniqueness: {case_sensitive: false}, length: {minimum: 4}
   validates :password, length: {minimum: 6}, allow_blank: true
-  validates :name, length: {minimum: 4}
+  validates :name, length: {minimum: 2}
   validates :lastname, length: {minimum: 4}
 
   class << self

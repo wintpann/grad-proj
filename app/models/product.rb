@@ -1,9 +1,9 @@
 class Product < ApplicationRecord
-  validates :code, uniqueness: {case_sensitive: true}
+  validates :code, uniqueness: {case_sensitive: true}, length: {minimum: 4}
   validates :name, length: {minimum: 4}
   validates :unit, length: {minimum: 2}
-  validates :price_in, numericality: true
-  validates :price_out, numericality: true
+  validates :price_in, numericality: {greater_than: 0}
+  validates :price_out, numericality: {greater_than: 0}
 
   belongs_to :supplier
   has_one :warehouse

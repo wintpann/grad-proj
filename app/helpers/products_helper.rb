@@ -9,7 +9,7 @@ module ProductsHelper
 
   def authorize_user!
     case params[:action]
-    when 'edit', 'update'
+    when 'edit', 'update', 'new', 'create'
       if !current_user.can?('change_products')
         flash[:danger]="You don't have right"
         redirect_to root_path
