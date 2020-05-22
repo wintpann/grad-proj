@@ -23,39 +23,40 @@ class UserSnap < ApplicationRecord
     self.role.split(',').each do |r|
       case r
       when 'set_rights'
-        temp << r.humanize
+        temp << 'Назначать права'
       when 'invites'
-        temp << 'Generate invites'
+        temp << 'Делать приглашения'
       when 'change_self'
-        temp << r.humanize
+        temp << 'Редактировать себя'
       when 'change_users'
-        temp << r.humanize
+        temp << 'Редактировать пользователей'
       when 'active_users'
-        temp << 'Delete/Restore users'
+        temp << 'Удалять/восстанавливать пользователей'
       when 'all_users'
-        temp << r.humanize
+        temp << 'Смотреть всех пользователей'
       when 'change_suppliers'
-        temp << r.humanize
+        temp << 'Редактировать поставщиков'
       when 'active_suppliers'
-        temp << 'Delete/Restore suppliers'
+        temp << 'Удалять/восстанавливать поставщиков'
       when 'change_products'
-        temp << r.humanize
+        temp << 'Редактировать продукты'
       when 'active_products'
-        temp << 'Delete/Restore products'
+        temp << 'Удалять/восстанавливать продукты'
       when 'warehouse'
-        temp << r.humanize
+        temp << 'Склад'
       when 'arrival'
-        temp << r.humanize
+        temp << 'Поступление товара'
       when 'realization'
-        temp << r.humanize
+        temp << 'Реализация товара'
       when 'refund'
-        temp << r.humanize
+        temp << 'Возврат товара'
       when 'write_off'
-        temp << r.humanize
+        temp << 'Списание товара'
       when 'events'
-        temp << r.humanize
+        temp << 'Все события'
       end
     end
     return temp
   end
+  
 end

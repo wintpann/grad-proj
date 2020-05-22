@@ -38,6 +38,11 @@ module UsersHelper
         flash[:danger]="В доступе отказано"
         redirect_to root_path
       end
+    when 'show'
+      if !current_user.can?('all_users') && params[:id]!=current_user.id.to_s
+        flash[:danger]="В доступе отказано"
+        redirect_to root_path
+      end
     end
   end
 
