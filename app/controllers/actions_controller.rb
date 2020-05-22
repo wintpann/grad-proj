@@ -9,7 +9,7 @@ class ActionsController < ApplicationController
   end
 
   def new_arrival
-    if !Product.any?
+    if !Product.active.any?
       flash[:danger]='No products to arrive'
       redirect_to root_path
     end

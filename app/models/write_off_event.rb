@@ -8,14 +8,16 @@ class WriteOffEvent < ApplicationRecord
        options[:params].each do |item|
          product_id=item[0].to_i
          amount=item[1].to_f
-         product_snap=ProductSnap.create_snap(Product.find(product_id))
-         arrival_event=self.create(production_event_id: options[:event].id,
-                                   product_id: product_id,
-                                   product_snap_id: product_snap.id,
-                                   amount: amount,
-                                   sum: product_snap.price_in*amount)
-         arrival_event.production_event.update_sum(arrival_event.sum)
-         arrival_event.production_event.head_event.update_sum(arrival_event.sum)
+         if amount>0
+           product_snap=ProductSnap.create_snap(Product.find(product_id))
+           arrival_event=self.create(production_event_id: options[:event].id,
+                                     product_id: product_id,
+                                     product_snap_id: product_snap.id,
+                                     amount: amount,
+                                     sum: product_snap.price_in*amount)
+           arrival_event.production_event.update_sum(arrival_event.sum)
+           arrival_event.production_event.head_event.update_sum(arrival_event.sum)
+         end
        end
      end
    end
