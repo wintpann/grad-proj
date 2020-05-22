@@ -65,7 +65,7 @@ class ProductsController < ApplicationController
       flash[:success]="Продукт удален"
       save_product_delete_event(product: product, editor: current_user)
     else
-      flash[:success]="Product восстановлен"
+      flash[:success]="Продукт восстановлен"
       save_product_restore_event(product: product, editor: current_user)
     end
 
