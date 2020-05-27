@@ -1,0 +1,5 @@
+<%= content_tag :h3, "Supplier updated | #{to_local_time(@event.created_at)} | by #{@event.editor.name} #{@event.editor.lastname} | (#{@event.supplier_change_event.head_event.id})", class: 'page-name'%>
+<div class="event_details">
+  <div class="half"><%= render 'snap/supplier', snap: @event.snap_from %></div>
+  <div class="half"><%= render 'snap/supplier', snap: @event.snap_to %></div>
+</div>

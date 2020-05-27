@@ -39,5 +39,7 @@ Rails.application.routes.draw do
 
   get 'rights' => 'actions#get_rights'
   post 'rights' => 'actions#set_rights'
+
+  get 'event_details' => 'actions#details'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

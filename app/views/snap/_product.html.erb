@@ -3,8 +3,8 @@
   <p>Name: <%= content_tag :span, snap.name%></p>
   <p>Description: <%= content_tag :span, snap.description%></p>
   <p>Supplier: <%= content_tag :span, snap.supplier.name%></p>
-  <p>Price in: <%= content_tag :span, snap.price_in%></p>
-  <p>Price out: <%= content_tag :span, snap.price_out%></p>
+  <p>Price in: <%= content_tag :span, snap.price_in, class: :sum%></p>
+  <p>Price out: <%= content_tag :span, snap.price_out, class: :sum%></p>
   <p>Active: <%= content_tag :span, snap.active%></p>
   <p>Now: <%= link_to 'Product', product_path(snap.product_id), class: :mark%></p>
 </div>

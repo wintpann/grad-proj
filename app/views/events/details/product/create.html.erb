@@ -1,0 +1,4 @@
+<%= content_tag :h3, "Product created | #{to_local_time(@event.created_at)} | by #{@event.editor.name} #{@event.editor.lastname} | (#{@event.product_change_event.head_event.id})", class: 'page-name'%>
+<div class="event_details">
+  <%= render 'snap/product', snap: @event.product_snap %>
+</div>
