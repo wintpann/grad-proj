@@ -3,5 +3,5 @@
   <p>Name: <%= content_tag :span, snap.name%></p>
   <p>Phone: <%= content_tag :span, snap.phone%></p>
   <p>Address: <%= content_tag :span, snap.address%></p>
-  <p>Now: <%= link_to 'Suppliler', supplier_path(snap.supplier_id), class: :mark%></p>
+  <p>Now: <%= link_to 'Suppliler', supplier_url(snap.supplier_id), class: :mark%></p>
 </div>

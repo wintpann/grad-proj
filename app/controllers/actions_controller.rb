@@ -13,52 +13,100 @@ class ActionsController < ApplicationController
     case event.goal_type
     when 'arrival'
       @event=event.production_event
-      render 'events/details/production/arrival'
+      respond_to do |format|
+        format.html { render 'events/details/production/arrival' }
+        format.pdf { render pdf: "Arrival from #{to_local_time(@event.created_at)}", page_size: 'A4', template: "events/details/production/arrival.html.erb", layout: "pdf.html", orientation: "Landscape", lowquality: true, zoom: 1, dpi: 75 }
+      end
     when 'refund'
       @event=event.production_event
-      render 'events/details/production/refund'
+      respond_to do |format|
+        format.html { render 'events/details/production/refund' }
+        format.pdf { render pdf: "Refund from #{to_local_time(@event.created_at)}", page_size: 'A4', template: "events/details/production/refund.html.erb", layout: "pdf.html", orientation: "Landscape", lowquality: true, zoom: 1, dpi: 75 }
+      end
     when 'realization'
       @event=event.production_event
-      render 'events/details/production/realization'
+      respond_to do |format|
+        format.html { render 'events/details/production/realization' }
+        format.pdf { render pdf: "Realization from #{to_local_time(@event.created_at)}", page_size: 'A4', template: "events/details/production/realization.html.erb", layout: "pdf.html", orientation: "Landscape", lowquality: true, zoom: 1, dpi: 75 }
+      end
     when 'write_off'
       @event=event.production_event
-      render 'events/details/production/write_off'
+      respond_to do |format|
+        format.html { render 'events/details/production/write_off' }
+        format.pdf { render pdf: "Write off from #{to_local_time(@event.created_at)}", page_size: 'A4', template: "events/details/production/write_off.html.erb", layout: "pdf.html", orientation: "Landscape", lowquality: true, zoom: 1, dpi: 75 }
+      end
     when 'product_edit'
       @event=event.product_change_event.product_edit_event
-      render 'events/details/product/edit'
+      respond_to do |format|
+        format.html { render 'events/details/product/edit' }
+        format.pdf { render pdf: "Product edit from #{to_local_time(@event.created_at)}", page_size: 'A4', template: "events/details/product/edit.html.erb", layout: "pdf.html", orientation: "Landscape", lowquality: true, zoom: 1, dpi: 75 }
+      end
     when 'product_restore'
       @event=event.product_change_event.product_restore_event
-      render 'events/details/product/restore'
+      respond_to do |format|
+        format.html { render 'events/details/product/restore' }
+        format.pdf { render pdf: "Product restore from #{to_local_time(@event.created_at)}", page_size: 'A4', template: "events/details/product/restore.html.erb", layout: "pdf.html", orientation: "Landscape", lowquality: true, zoom: 1, dpi: 75 }
+      end
     when 'product_delete'
       @event=event.product_change_event.product_delete_event
-      render 'events/details/product/delete'
+      respond_to do |format|
+        format.html { render 'events/details/product/delete' }
+        format.pdf { render pdf: "Product delete from #{to_local_time(@event.created_at)}", page_size: 'A4', template: "events/details/product/delete.html.erb", layout: "pdf.html", orientation: "Landscape", lowquality: true, zoom: 1, dpi: 75 }
+      end
     when 'product_create'
       @event=event.product_change_event.product_create_event
-      render 'events/details/product/create'
+      respond_to do |format|
+        format.html { render 'events/details/product/create' }
+        format.pdf { render pdf: "Product create from #{to_local_time(@event.created_at)}", page_size: 'A4', template: "events/details/product/create.html.erb", layout: "pdf.html", orientation: "Landscape", lowquality: true, zoom: 1, dpi: 75 }
+      end
     when 'user_edit'
       @event=event.user_change_event.user_edit_event
-      render 'events/details/user/edit'
+      respond_to do |format|
+        format.html { render 'events/details/user/edit' }
+        format.pdf { render pdf: "User edit from #{to_local_time(@event.created_at)}", page_size: 'A4', template: "events/details/user/edit.html.erb", layout: "pdf.html", orientation: "Landscape", lowquality: true, zoom: 1, dpi: 75 }
+      end
     when 'user_restore'
       @event=event.user_change_event.user_restore_event
-      render 'events/details/user/restore'
+      respond_to do |format|
+        format.html { render 'events/details/user/restore' }
+        format.pdf { render pdf: "User restore from #{to_local_time(@event.created_at)}", page_size: 'A4', template: "events/details/user/restore.html.erb", layout: "pdf.html", orientation: "Landscape", lowquality: true, zoom: 1, dpi: 75 }
+      end
     when 'user_delete'
       @event=event.user_change_event.user_delete_event
-      render 'events/details/user/delete'
+      respond_to do |format|
+        format.html { render 'events/details/user/delete' }
+        format.pdf { render pdf: "User delete from #{to_local_time(@event.created_at)}", page_size: 'A4', template: "events/details/user/delete.html.erb", layout: "pdf.html", orientation: "Landscape", lowquality: true, zoom: 1, dpi: 75 }
+      end
     when 'user_create'
       @event=event.user_change_event.user_create_event
-      render 'events/details/user/create'
+      respond_to do |format|
+        format.html { render 'events/details/user/create' }
+        format.pdf { render pdf: "User create from #{to_local_time(@event.created_at)}", page_size: 'A4', template: "events/details/user/create.html.erb", layout: "pdf.html", orientation: "Landscape", lowquality: true, zoom: 1, dpi: 75 }
+      end
     when 'supplier_edit'
       @event=event.supplier_change_event.supplier_edit_event
-      render 'events/details/supplier/edit'
+      respond_to do |format|
+        format.html { render 'events/details/supplier/edit' }
+        format.pdf { render pdf: "Supplier edit from #{to_local_time(@event.created_at)}", page_size: 'A4', template: "events/details/supplier/edit.html.erb", layout: "pdf.html", orientation: "Landscape", lowquality: true, zoom: 1, dpi: 75 }
+      end
     when 'supplier_restore'
       @event=event.supplier_change_event.supplier_restore_event
-      render 'events/details/supplier/restore'
+      respond_to do |format|
+        format.html { render 'events/details/supplier/restore' }
+        format.pdf { render pdf: "Supplier restore from #{to_local_time(@event.created_at)}", page_size: 'A4', template: "events/details/supplier/restore.html.erb", layout: "pdf.html", orientation: "Landscape", lowquality: true, zoom: 1, dpi: 75 }
+      end
     when 'supplier_delete'
       @event=event.supplier_change_event.supplier_delete_event
-      render 'events/details/supplier/delete'
+      respond_to do |format|
+        format.html { render 'events/details/supplier/delete' }
+        format.pdf { render pdf: "Supplier delete from #{to_local_time(@event.created_at)}", page_size: 'A4', template: "events/details/supplier/delete.html.erb", layout: "pdf.html", orientation: "Landscape", lowquality: true, zoom: 1, dpi: 75 }
+      end
     when 'supplier_create'
       @event=event.supplier_change_event.supplier_create_event
-      render 'events/details/supplier/create'
+      respond_to do |format|
+        format.html { render 'events/details/supplier/create' }
+        format.pdf { render pdf: "Supplier create from #{to_local_time(@event.created_at)}", page_size: 'A4', template: "events/details/supplier/create.html.erb", layout: "pdf.html", orientation: "Landscape", lowquality: true, zoom: 1, dpi: 75 }
+      end
     end
   end
 
@@ -175,6 +223,11 @@ class ActionsController < ApplicationController
 
     @all_events=@all_events.filter_events(filter)
     @events=@all_events.paginate(params[:page])
+
+    respond_to do |format|
+      format.html { render 'actions/events' }
+      format.pdf { render pdf: "Events from #{params[:filter][:date_from]} to #{params[:filter][:date_to]}", page_size: 'A4', template: 'actions/events_pdf.html.erb', layout: "pdf.html", orientation: "Landscape", lowquality: true, zoom: 1, dpi: 75 }
+    end
   end
 
   def invites
