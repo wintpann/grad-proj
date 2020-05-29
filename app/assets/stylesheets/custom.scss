@@ -159,7 +159,6 @@ h1,h2,h3,h4,h5,h6,b{
         -ms-user-select: none;
             user-select: none;
 }
-
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
 html{
@@ -183,14 +182,6 @@ li{
 a{
   text-decoration: none;
   color: inherit;
-}
-body{
-  background-image: url('https://i0.wp.com/westernslopewebdesignco.com/wp-content/uploads/2016/03/Blurred-Background-Sunset-3c-Free.jpg');
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  background-color: #aaa;
 }
 .nav-item{
   text-transform: lowercase;
@@ -280,6 +271,10 @@ body{
 .info{
   background-color: rgba(255, 255, 255, 0.05);
   padding: 10px;
+}
+.info>*{
+  border-bottom: 1px solid black;
+  padding-bottom: 10px;
 }
 .info span{
   background-color: rgba(255, 255, 255, 0.1);
@@ -495,5 +490,5 @@ form{
   margin: 0 5px;
 }
 .sum::after{
-  content: ' ₽';
+  content: ' P';
 }

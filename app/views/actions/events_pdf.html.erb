@@ -1,7 +1,5 @@
-<%= render 'shared/filter'%>
-<% if @events && @events.any?%>
-  <%= render 'shared/paginator'%>
-  <%= link_to 'Print all', events_path(page: params[:page], format: 'pdf', filter:{type: params[:filter][:type], supplier: params[:filter][:supplier], product: params[:filter][:product], editor: params[:filter][:editor], date_from: params[:filter][:date_from], date_to: params[:filter][:date_to], sort: params[:filter][:sort]}), target: :_blank, class: :btn%>
+
+<% if @all_events && @all_events.any?%>
   <ul class="event_info columns">
     <li><%= content_tag :span, 'Type'%></li>
     <li><%= content_tag :span, 'Info'%></li>
@@ -9,7 +7,7 @@
     <li><%= content_tag :span, 'By'%></li>
     <li><%= content_tag :span, 'Details'%></li>
   </ul>
-  <% @events.each do |event| %>
+  <% @all_events.each do |event| %>
     <div class="event">
       <% if event.event_type=='user_change' %>
         <% sub_event=event.user_change_event %>
