@@ -184,14 +184,7 @@ a{
   text-decoration: none;
   color: inherit;
 }
-body{
-  background-image: url('https://i0.wp.com/westernslopewebdesignco.com/wp-content/uploads/2016/03/Blurred-Background-Sunset-3c-Free.jpg');
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  background-color: #aaa;
-}
+
 .nav-item{
   text-transform: lowercase;
   color: #eee;
@@ -203,7 +196,10 @@ body{
   width: 6rem;
   text-align: center;
 }
-
+.info>*{
+  border-bottom: 1px solid black;
+  padding-bottom: 10px;
+}
 .main-header{
   background-color: rgba(50, 46, 51, 0.1);
 }
@@ -496,4 +492,7 @@ form{
 }
 .sum::after{
    content: ' ₽';
+ }
+ .hid{
+   visibility: hidden;
  }

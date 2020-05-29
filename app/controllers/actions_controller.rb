@@ -9,58 +9,106 @@ class ActionsController < ApplicationController
   end
 
   def details
-     event=HeadEvent.find(params[:id])
-     case event.goal_type
-     when 'arrival'
-       @event=event.production_event
-       render 'events/details/production/arrival'
-     when 'refund'
-       @event=event.production_event
-       render 'events/details/production/refund'
-     when 'realization'
-       @event=event.production_event
-       render 'events/details/production/realization'
-     when 'write_off'
-       @event=event.production_event
-       render 'events/details/production/write_off'
-     when 'product_edit'
-       @event=event.product_change_event.product_edit_event
-       render 'events/details/product/edit'
-     when 'product_restore'
-       @event=event.product_change_event.product_restore_event
-       render 'events/details/product/restore'
-     when 'product_delete'
-       @event=event.product_change_event.product_delete_event
-       render 'events/details/product/delete'
-     when 'product_create'
-       @event=event.product_change_event.product_create_event
-       render 'events/details/product/create'
-     when 'user_edit'
-       @event=event.user_change_event.user_edit_event
-       render 'events/details/user/edit'
-     when 'user_restore'
-       @event=event.user_change_event.user_restore_event
-       render 'events/details/user/restore'
-     when 'user_delete'
-       @event=event.user_change_event.user_delete_event
-       render 'events/details/user/delete'
-     when 'user_create'
-       @event=event.user_change_event.user_create_event
-       render 'events/details/user/create'
-     when 'supplier_edit'
-       @event=event.supplier_change_event.supplier_edit_event
-       render 'events/details/supplier/edit'
-     when 'supplier_restore'
-       @event=event.supplier_change_event.supplier_restore_event
-       render 'events/details/supplier/restore'
-     when 'supplier_delete'
-       @event=event.supplier_change_event.supplier_delete_event
-       render 'events/details/supplier/delete'
-     when 'supplier_create'
-       @event=event.supplier_change_event.supplier_create_event
-       render 'events/details/supplier/create'
-     end
-   end
+    event=HeadEvent.find(params[:id])
+    case event.goal_type
+    when 'arrival'
+      @event=event.production_event
+      respond_to do |format|
+        format.html { render 'events/details/production/arrival' }
+        format.pdf { render pdf: "Поступление товара от #{to_local_time(@event.created_at)}", page_size: 'A4', template: "events/details/production/arrival.html.erb", layout: "pdf.html", orientation: "Landscape", lowquality: true, zoom: 1, dpi: 75 }
+      end
+    when 'refund'
+      @event=event.production_event
+      respond_to do |format|
+        format.html { render 'events/details/production/refund' }
+        format.pdf { render pdf: "Возврат товара от #{to_local_time(@event.created_at)}", page_size: 'A4', template: "events/details/production/refund.html.erb", layout: "pdf.html", orientation: "Landscape", lowquality: true, zoom: 1, dpi: 75 }
+      end
+    when 'realization'
+      @event=event.production_event
+      respond_to do |format|
+        format.html { render 'events/details/production/realization' }
+        format.pdf { render pdf: "Реализация товара от #{to_local_time(@event.created_at)}", page_size: 'A4', template: "events/details/production/realization.html.erb", layout: "pdf.html", orientation: "Landscape", lowquality: true, zoom: 1, dpi: 75 }
+      end
+    when 'write_off'
+      @event=event.production_event
+      respond_to do |format|
+        format.html { render 'events/details/production/write_off' }
+        format.pdf { render pdf: "Списание товара от #{to_local_time(@event.created_at)}", page_size: 'A4', template: "events/details/production/write_off.html.erb", layout: "pdf.html", orientation: "Landscape", lowquality: true, zoom: 1, dpi: 75 }
+      end
+    when 'product_edit'
+      @event=event.product_change_event.product_edit_event
+      respond_to do |format|
+        format.html { render 'events/details/product/edit' }
+        format.pdf { render pdf: "Обновление продукта от #{to_local_time(@event.created_at)}", page_size: 'A4', template: "events/details/product/edit.html.erb", layout: "pdf.html", orientation: "Landscape", lowquality: true, zoom: 1, dpi: 75 }
+      end
+    when 'product_restore'
+      @event=event.product_change_event.product_restore_event
+      respond_to do |format|
+        format.html { render 'events/details/product/restore' }
+        format.pdf { render pdf: "Восстановление продукта от #{to_local_time(@event.created_at)}", page_size: 'A4', template: "events/details/product/restore.html.erb", layout: "pdf.html", orientation: "Landscape", lowquality: true, zoom: 1, dpi: 75 }
+      end
+    when 'product_delete'
+      @event=event.product_change_event.product_delete_event
+      respond_to do |format|
+        format.html { render 'events/details/product/delete' }
+        format.pdf { render pdf: "Удаление продукта от #{to_local_time(@event.created_at)}", page_size: 'A4', template: "events/details/product/delete.html.erb", layout: "pdf.html", orientation: "Landscape", lowquality: true, zoom: 1, dpi: 75 }
+      end
+    when 'product_create'
+      @event=event.product_change_event.product_create_event
+      respond_to do |format|
+        format.html { render 'events/details/product/create' }
+        format.pdf { render pdf: "Создание продукта от #{to_local_time(@event.created_at)}", page_size: 'A4', template: "events/details/product/create.html.erb", layout: "pdf.html", orientation: "Landscape", lowquality: true, zoom: 1, dpi: 75 }
+      end
+    when 'user_edit'
+      @event=event.user_change_event.user_edit_event
+      respond_to do |format|
+        format.html { render 'events/details/user/edit' }
+        format.pdf { render pdf: "Обновление пользователя от #{to_local_time(@event.created_at)}", page_size: 'A4', template: "events/details/user/edit.html.erb", layout: "pdf.html", orientation: "Landscape", lowquality: true, zoom: 1, dpi: 75 }
+      end
+    when 'user_restore'
+      @event=event.user_change_event.user_restore_event
+      respond_to do |format|
+        format.html { render 'events/details/user/restore' }
+        format.pdf { render pdf: "Восстановление пользователя от #{to_local_time(@event.created_at)}", page_size: 'A4', template: "events/details/user/restore.html.erb", layout: "pdf.html", orientation: "Landscape", lowquality: true, zoom: 1, dpi: 75 }
+      end
+    when 'user_delete'
+      @event=event.user_change_event.user_delete_event
+      respond_to do |format|
+        format.html { render 'events/details/user/delete' }
+        format.pdf { render pdf: "Удаление пользователя от #{to_local_time(@event.created_at)}", page_size: 'A4', template: "events/details/user/delete.html.erb", layout: "pdf.html", orientation: "Landscape", lowquality: true, zoom: 1, dpi: 75 }
+      end
+    when 'user_create'
+      @event=event.user_change_event.user_create_event
+      respond_to do |format|
+        format.html { render 'events/details/user/create' }
+        format.pdf { render pdf: "Создание пользователя от #{to_local_time(@event.created_at)}", page_size: 'A4', template: "events/details/user/create.html.erb", layout: "pdf.html", orientation: "Landscape", lowquality: true, zoom: 1, dpi: 75 }
+      end
+    when 'supplier_edit'
+      @event=event.supplier_change_event.supplier_edit_event
+      respond_to do |format|
+        format.html { render 'events/details/supplier/edit' }
+        format.pdf { render pdf: "Обновление поставщика от #{to_local_time(@event.created_at)}", page_size: 'A4', template: "events/details/supplier/edit.html.erb", layout: "pdf.html", orientation: "Landscape", lowquality: true, zoom: 1, dpi: 75 }
+      end
+    when 'supplier_restore'
+      @event=event.supplier_change_event.supplier_restore_event
+      respond_to do |format|
+        format.html { render 'events/details/supplier/restore' }
+        format.pdf { render pdf: "Восстановление поставщика от #{to_local_time(@event.created_at)}", page_size: 'A4', template: "events/details/supplier/restore.html.erb", layout: "pdf.html", orientation: "Landscape", lowquality: true, zoom: 1, dpi: 75 }
+      end
+    when 'supplier_delete'
+      @event=event.supplier_change_event.supplier_delete_event
+      respond_to do |format|
+        format.html { render 'events/details/supplier/delete' }
+        format.pdf { render pdf: "Удаление поставщика от #{to_local_time(@event.created_at)}", page_size: 'A4', template: "events/details/supplier/delete.html.erb", layout: "pdf.html", orientation: "Landscape", lowquality: true, zoom: 1, dpi: 75 }
+      end
+    when 'supplier_create'
+      @event=event.supplier_change_event.supplier_create_event
+      respond_to do |format|
+        format.html { render 'events/details/supplier/create' }
+        format.pdf { render pdf: "Создание поставщика от #{to_local_time(@event.created_at)}", page_size: 'A4', template: "events/details/supplier/create.html.erb", layout: "pdf.html", orientation: "Landscape", lowquality: true, zoom: 1, dpi: 75 }
+      end
+    end
+  end
 
   def new_arrival
     if !Product.active.any?
@@ -175,6 +223,11 @@ class ActionsController < ApplicationController
 
     @all_events=@all_events.filter_events(filter)
     @events=@all_events.paginate(params[:page])
+
+    respond_to do |format|
+      format.html { render 'actions/events' }
+      format.pdf { render pdf: "События от #{params[:filter][:date_from]} по #{params[:filter][:date_to]}", page_size: 'A4', template: 'actions/events_pdf.html.erb', layout: "pdf.html", orientation: "Landscape", lowquality: true, zoom: 1, dpi: 75 }
+    end
   end
 
   def invites

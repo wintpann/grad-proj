@@ -8,5 +8,5 @@
     <% end %>
   </p>
   <p>Активный: <%= content_tag :span, snap.active%></p>
-  <p>Сейчас: <%= link_to 'Перейти', user_path(snap.user_id), class: :mark%></p>
+  <p>Сейчас: <%= link_to 'Перейти', user_url(snap.user_id), class: :mark%></p>
 </div>

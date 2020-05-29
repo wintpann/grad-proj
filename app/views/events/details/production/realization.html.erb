@@ -12,7 +12,7 @@
     </thead>
     <% @event.realization_events.each do |e| %>
       <tr>
-        <td><%= link_to e.product.code, product_path(e.product.id), class: :mark %></td>
+        <td><%= link_to e.product.code, product_url(e.product.id), class: :mark %></td>
         <td><%= e.product_snap.code %></td>
         <td><%= content_tag :span, e.product_snap.price_out, class: :sum %></td>
         <td><%= e.amount %></td>
