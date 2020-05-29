@@ -1,0 +1,23 @@
+<%= content_tag :h3, "Write off #{to_local_time(@event.created_at)} | by #{@event.editor.name} #{@event.editor.lastname} | (#{@event.head_event.id})", class: 'page-name'%>
+<div class="event_details">
+  <table>
+    <thead>
+      <tr>
+        <th>Product now</th>
+        <th>Product code</th>
+        <th>Price in</th>
+        <th>Amount</th>
+        <th>Sum</th>
+      </tr>
+    </thead>
+    <% @event.write_off_events.each do |e| %>
+      <tr>
+        <td><%= link_to e.product.code, product_path(e.product.id), class: :mark %></td>
+        <td><%= e.product_snap.code %></td>
+        <td><%= content_tag :span, e.product_snap.price_in, class: :sum %></td>
+        <td><%= e.amount %></td>
+        <td><%= content_tag :span, e.sum, class: :sum %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

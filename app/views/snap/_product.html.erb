@@ -3,8 +3,8 @@
   <p>Наименование: <%= content_tag :span, snap.name%></p>
   <p>Описание: <%= content_tag :span, snap.description%></p>
   <p>Поставщик: <%= content_tag :span, snap.supplier.name%></p>
-  <p>Цена закупки: <%= content_tag :span, snap.price_in%></p>
-  <p>Цена продажи: <%= content_tag :span, snap.price_out%></p>
+  <p>Цена закупки: <%= content_tag :span, snap.price_in, class: :sum%></p>
+  <p>Цена продажи: <%= content_tag :span, snap.price_out, class: :sum%></p>
   <p>Активный: <%= content_tag :span, snap.active%></p>
   <p>Сейчас: <%= link_to 'Перейти', product_path(snap.product_id), class: :mark%></p>
 </div>

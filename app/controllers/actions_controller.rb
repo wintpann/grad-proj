@@ -8,6 +8,60 @@ class ActionsController < ApplicationController
     @warehouses=Warehouse.all
   end
 
+  def details
+     event=HeadEvent.find(params[:id])
+     case event.goal_type
+     when 'arrival'
+       @event=event.production_event
+       render 'events/details/production/arrival'
+     when 'refund'
+       @event=event.production_event
+       render 'events/details/production/refund'
+     when 'realization'
+       @event=event.production_event
+       render 'events/details/production/realization'
+     when 'write_off'
+       @event=event.production_event
+       render 'events/details/production/write_off'
+     when 'product_edit'
+       @event=event.product_change_event.product_edit_event
+       render 'events/details/product/edit'
+     when 'product_restore'
+       @event=event.product_change_event.product_restore_event
+       render 'events/details/product/restore'
+     when 'product_delete'
+       @event=event.product_change_event.product_delete_event
+       render 'events/details/product/delete'
+     when 'product_create'
+       @event=event.product_change_event.product_create_event
+       render 'events/details/product/create'
+     when 'user_edit'
+       @event=event.user_change_event.user_edit_event
+       render 'events/details/user/edit'
+     when 'user_restore'
+       @event=event.user_change_event.user_restore_event
+       render 'events/details/user/restore'
+     when 'user_delete'
+       @event=event.user_change_event.user_delete_event
+       render 'events/details/user/delete'
+     when 'user_create'
+       @event=event.user_change_event.user_create_event
+       render 'events/details/user/create'
+     when 'supplier_edit'
+       @event=event.supplier_change_event.supplier_edit_event
+       render 'events/details/supplier/edit'
+     when 'supplier_restore'
+       @event=event.supplier_change_event.supplier_restore_event
+       render 'events/details/supplier/restore'
+     when 'supplier_delete'
+       @event=event.supplier_change_event.supplier_delete_event
+       render 'events/details/supplier/delete'
+     when 'supplier_create'
+       @event=event.supplier_change_event.supplier_create_event
+       render 'events/details/supplier/create'
+     end
+   end
+
   def new_arrival
     if !Product.active.any?
       flash[:danger]='Нет продуктов для поступления'

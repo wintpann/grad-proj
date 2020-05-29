@@ -1,10 +1,7 @@
 <ul class="event_info">
-  <li><%= content_tag :span, 'Продукт удален'%></li>
+  <li><%= content_tag :span, "Продукт удален (#{event.product_change_event.head_event.id})"%></li>
   <li><%= link_to event.product_snap.now.name, product_path(event.product_snap.product_id), class: :mark %></li>
   <li><%= content_tag :span, to_local_time(event.created_at)%></li>
   <li><%= link_to event.editor.identifier, user_path(event.editor.id), class: :mark %></li>
-  <li><button onclick="details('details_<%=event.product_change_event.head_event.id%>')">Подробно</button></li>
+  <li><%= link_to 'Подробно', event_details_path(id: event.product_change_event.head_event.id), class: :btn2, target: :_blank  %></li>
 </ul>
-<div class="event_details hidden" id="details_<%=event.product_change_event.head_event.id%>">
-  <%= render 'snap/product', snap: event.product_snap %>
-</div>
