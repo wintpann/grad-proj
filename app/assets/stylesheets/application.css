@@ -21,3 +21,6 @@
    background-size: cover;
    background-color: #aaa;
  }
+ .hid{
+   visibility: visible !important;
+ }
