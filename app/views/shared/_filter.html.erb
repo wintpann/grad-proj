@@ -11,6 +11,7 @@
     <%= f.label :type, "Тип", class: :mark %>
     <%= f.select(:type) do %>
       <%= content_tag :option, 'Все', value: 'all' %>
+      <%= content_tag :option, 'Товарые операции', value: 'production', selected: params[:filter][:type]=='production' %>
       <% event_types.each do |t| %>
         <%= content_tag :option, t[0], value: t[1], selected: params[:filter][:type]==t[1] %>
       <% end %>

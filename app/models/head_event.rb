@@ -9,7 +9,11 @@ class HeadEvent < ApplicationRecord
     temp=temp.where('created_at >= ? and created_at <= ?', params[:date_from], params[:date_to].to_date+1.day)
 
     if params[:type]!='all'
-      temp=temp.where(goal_type: params[:type])
+      if params[:type]=='production'
+         temp=temp.where(event_type: 'production_operation')
+       else
+         temp=temp.where(goal_type: params[:type])
+       end
     end
 
     if params[:supplier]!='all'
@@ -34,7 +38,7 @@ class HeadEvent < ApplicationRecord
     when 'sum_desc'
       temp=temp.order(sum: :desc)
     end
-    
+
     return temp
   end
 
