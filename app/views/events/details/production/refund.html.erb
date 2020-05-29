@@ -1,4 +1,4 @@
-<%= content_tag :h3, "Refund #{to_local_time(@event.created_at)} | by #{@event.editor.name} #{@event.editor.lastname} | (#{@event.head_event.id})", class: 'page-name'%>
+<%= content_tag :h3, "Возврат товара #{to_local_time(@event.created_at)} | сотрудник: #{@event.editor.name} #{@event.editor.lastname} | (#{@event.head_event.id})", class: 'page-name'%>
 <div class="event_details">
   <table>
     <thead>

@@ -1,4 +1,4 @@
-<%= content_tag :h3, "Supplier created | #{to_local_time(@event.created_at)} | by #{@event.editor.name} #{@event.editor.lastname} | (#{@event.supplier_change_event.head_event.id})", class: 'page-name'%>
+<%= content_tag :h3, "Поставщик создан | #{to_local_time(@event.created_at)} | кем: #{@event.editor.name} #{@event.editor.lastname} | (#{@event.supplier_change_event.head_event.id})", class: 'page-name'%>
 <div class="event_details">
   <%= render 'snap/supplier', snap: @event.supplier_snap %>
 </div>

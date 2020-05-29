@@ -1,4 +1,4 @@
-<%= content_tag :h3, "User deleted | #{to_local_time(@event.created_at)} | by #{@event.editor.name} #{@event.editor.lastname} | (#{@event.user_change_event.head_event.id})", class: 'page-name'%>
+<%= content_tag :h3, "Пользователь удален | #{to_local_time(@event.created_at)} | кем: #{@event.editor.name} #{@event.editor.lastname} | (#{@event.user_change_event.head_event.id})", class: 'page-name'%>
 <div class="event_details">
   <%= render 'snap/user', snap: @event.user_snap %>
 </div>
