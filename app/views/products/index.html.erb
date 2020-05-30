@@ -1,4 +1,5 @@
 <h3 class="page-name">Product list</h3>
+<%= render 'search' %>
 <%= link_to 'Deleted products', inproducts_path, class: :btn %>
 <%= link_to 'New product', new_product_path, class: :btn %>
 <% if @products && @products.any? %>
@@ -7,6 +8,7 @@
       <li class="collection-item list-3">
         <%= link_to product.code, product_path(product) %>
         <%= content_tag :span, "(#{product.name})" %>
+        <%= content_tag :span, "< #{product.description} >" %>
       </li>
     <% end %>
   </ul>
