@@ -52,6 +52,13 @@ class ProductsController < ApplicationController
 
   def index
     @products=Product.active
+    if params[:search] && !params[:search][:string].empty?
+      if params[:search][:in]=='name'
+        @products=@products.where("lower(name) like ?", "%" + params[:search][:string].downcase + "%")
+      elsif params[:search][:in]=='description'
+        @products=@products.where("lower(description) like ?", "%" + params[:search][:string].downcase + "%")
+      end
+    end
   end
 
   def inactive

@@ -1,0 +1,15 @@
+<%= form_for 'search', url: products_path, method: :get, html:{class: :noselect} do |f| %>
+  <div class="filter">
+    <%= f.label 'string', 'Поиск: '%>
+    <%= f.text_field 'string', placeholder: 'регистр не учитывается', value: params[:search]&&params[:search][:string]||''%>
+  </div>
+  <div class="filter">
+    <%= f.radio_button "in", "name", {:checked => true||params[:search]&&params[:search][:in]=='name'}%>
+    <%= f.label 'in_name', 'По наименованию', class: :mark%>
+  </div>
+  <div class="filter">
+    <%= f.radio_button "in", "description", {:checked => params[:search]&&params[:search][:in]=='description'}%>
+    <%= f.label 'in_description', 'По описанию (медленнее)', class: :mark%>
+  </div>
+  <%= f.submit "Поиск" %>
+<% end %>
